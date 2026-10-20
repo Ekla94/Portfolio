@@ -121,7 +121,7 @@ const prefersReducedMotion = () =>
     burger.setAttribute('aria-expanded', open);
   });
 
-  $$('.nav-link', menu).forEach(link => {
+  $$('a', menu).forEach(link => {
     link.addEventListener('click', () => {
       menu.classList.remove('open');
       burger.setAttribute('aria-expanded', 'false');
@@ -316,6 +316,20 @@ const prefersReducedMotion = () =>
     mouse.active = false;
   }, { passive: true });
 
+  // Touch support for phone/tablet interaction
+  const onTouch = (e) => {
+    if (e.touches && e.touches.length > 0) {
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+      mouse.active = true;
+    }
+  };
+  window.addEventListener('touchstart', onTouch, { passive: true });
+  window.addEventListener('touchmove', onTouch, { passive: true });
+  window.addEventListener('touchend', () => {
+    setTimeout(() => { mouse.active = false; }, 600);
+  }, { passive: true });
+
   window.addEventListener('resize', resize, { passive: true });
 
   // Main Render Loop
@@ -474,7 +488,7 @@ const prefersReducedMotion = () =>
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.02, rootMargin: '0px 0px 60px 0px' });
 
   els.forEach(el => {
     if (prefersReducedMotion()) { el.classList.add('in'); return; }
