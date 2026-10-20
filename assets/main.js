@@ -142,74 +142,275 @@ const prefersReducedMotion = () =>
   sections.forEach(s => observer.observe(s));
 })();
 
-/* ─── 4. Lightweight Particle Background ──────────────────────── */
-(function initParticles() {
-  const canvas = $('.hero-canvas');
-  if (!canvas || prefersReducedMotion()) return;
+/* ─── 4. Neural Network / Data Constellation Engine ───────────── */
+(function initNeuralConstellation() {
+  const canvas = $('#neural-canvas');
+  if (!canvas) return;
   const ctx = canvas.getContext('2d', { alpha: true });
 
-  let W, H, particles = [], raf;
+  let W = 0, H = 0;
+  let dpr = 1;
+  let nodes = [];
+  let rafId = null;
 
-  const resize = () => {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
+  // Track smoothed scroll position for fluid parallax with no jarring steps
+  let targetScrollY = window.scrollY;
+  let currentScrollY = window.scrollY;
+
+  // Mouse interaction state
+  const mouse = {
+    x: -9999,
+    y: -9999,
+    active: false,
+    radius: 170
   };
 
-  const rand = (lo, hi) => lo + Math.random() * (hi - lo);
+  // Node Color Schemes (neon accents fading into dark background)
+  // Palette: electric neon orange (primary), cyber electric cyan, deep purple/violet, warm amber
+  const COLOR_PALETTES = [
+    { r: 255, g: 90,  b: 0   }, // Electric neon orange
+    { r: 0,   g: 210, b: 255 }, // Electric cyan-blue
+    { r: 168, g: 85,  b: 247 }, // Deep cyber purple
+    { r: 255, g: 154, b: 0   }  // Vibrant amber
+  ];
 
-  class Particle {
-    constructor() { this.reset(); }
-    reset() {
-      this.x  = rand(0, W || 800);
-      this.y  = rand(0, H || 600);
-      this.r  = rand(0.7, 1.8);
-      this.vx = rand(-0.25, 0.25);
-      this.vy = rand(-0.4, -0.1);
-      this.life = rand(0.3, 0.9);
-      this.fade = rand(0.003, 0.007);
+  class Node {
+    constructor(w, h, isInit = false) {
+      this.reset(w, h, isInit);
     }
-    step() {
+
+    reset(w, h, isInit = false) {
+      this.x = Math.random() * w;
+      this.baseY = isInit ? Math.random() * h : (Math.random() < 0.5 ? -15 : h + 15);
+
+      // 3D Depth / Z-layer: 0.25 (distant, subtle, slow) to 1.15 (foreground, bright, fast)
+      this.z = 0.25 + Math.random() * 0.9;
+
+      // Radius scaled by depth
+      this.r = (0.85 + Math.random() * 1.5) * this.z;
+
+      // Natural Brownian velocity
+      const speed = (0.2 + Math.random() * 0.35) * (0.8 + this.z * 0.4);
+      const angle = Math.random() * Math.PI * 2;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed;
+
+      // Color selection (balanced neon distribution)
+      const randType = Math.random();
+      if (randType < 0.52) {
+        this.color = COLOR_PALETTES[0]; // Neon orange
+      } else if (randType < 0.76) {
+        this.color = COLOR_PALETTES[1]; // Electric blue
+      } else if (randType < 0.92) {
+        this.color = COLOR_PALETTES[2]; // Deep purple
+      } else {
+        this.color = COLOR_PALETTES[3]; // Amber
+      }
+
+      this.pulsePhase = Math.random() * Math.PI * 2;
+      this.pulseSpeed = 0.02 + Math.random() * 0.03;
+
+      this.dispX = 0;
+      this.dispY = 0;
+      this.renderX = this.x;
+      this.renderY = this.baseY;
+    }
+
+    update(w, h, scrollY) {
       this.x += this.vx;
-      this.y += this.vy;
-      this.life -= this.fade;
-      if (this.life <= 0 || this.y < -5) this.reset();
+      this.baseY += this.vy;
+
+      // Horizontal edge wrap
+      if (this.x < -30) this.x = w + 30;
+      else if (this.x > w + 30) this.x = -30;
+
+      // Scroll Parallax:
+      // Deeper nodes move upwards faster when user scrolls down
+      const parallaxFactor = 0.36;
+      const rawY = this.baseY - (scrollY * this.z * parallaxFactor);
+
+      // Modulo wrap vertically across screen height for infinite scrolling
+      let py = rawY % h;
+      if (py < 0) py += h;
+      this.calcY = py;
+
+      // Interactive mouse repulsion
+      if (mouse.active) {
+        const dx = (this.x + this.dispX) - mouse.x;
+        const dy = (this.calcY + this.dispY) - mouse.y;
+        const distSq = dx * dx + dy * dy;
+        const maxDist = mouse.radius * (0.7 + this.z * 0.4);
+
+        if (distSq < maxDist * maxDist && distSq > 0.001) {
+          const dist = Math.sqrt(distSq);
+          const force = (1 - dist / maxDist) * 34 * this.z;
+          const targetX = (dx / dist) * force;
+          const targetY = (dy / dist) * force;
+          this.dispX += (targetX - this.dispX) * 0.14;
+          this.dispY += (targetY - this.dispY) * 0.14;
+        } else {
+          this.dispX *= 0.88;
+          this.dispY *= 0.88;
+        }
+      } else {
+        this.dispX *= 0.88;
+        this.dispY *= 0.88;
+      }
+
+      this.renderX = this.x + this.dispX;
+      this.renderY = this.calcY + this.dispY;
+
+      this.pulsePhase += this.pulseSpeed;
     }
-    draw() {
+
+    draw(ctx) {
+      const pulse = 0.82 + 0.18 * Math.sin(this.pulsePhase);
+      const alpha = (0.35 + 0.55 * (this.z / 1.15)) * pulse;
+      const c = this.color;
+
+      // Core glowing node
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,90,0,${this.life * 0.45})`;
+      ctx.arc(this.renderX, this.renderY, this.r * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
       ctx.fill();
+
+      // Atmospheric halo on prominent foreground nodes
+      if (this.z > 0.72) {
+        ctx.beginPath();
+        ctx.arc(this.renderX, this.renderY, this.r * 2.6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.16})`;
+        ctx.fill();
+      }
     }
   }
 
-  const init = () => {
-    resize();
-    particles = Array.from({ length: 55 }, () => new Particle());
-  };
+  const resize = () => {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-  const loop = () => {
-    ctx.clearRect(0, 0, W, H);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].step();
-      particles[i].draw();
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Dynamic node count scaled to viewport size (balanced for 60fps)
+    const targetCount = Math.min(170, Math.max(65, Math.floor((W * H) / 9500)));
+
+    if (nodes.length !== targetCount) {
+      nodes = Array.from({ length: targetCount }, () => new Node(W, H, true));
     }
-    raf = requestAnimationFrame(loop);
   };
 
-  const io = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { if (!raf) loop(); }
-    else { cancelAnimationFrame(raf); raf = null; }
-  });
+  // Passive event listeners for fluid responsiveness
+  window.addEventListener('scroll', () => {
+    targetScrollY = window.scrollY;
+  }, { passive: true });
+
+  window.addEventListener('mousemove', e => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    mouse.active = false;
+  }, { passive: true });
 
   window.addEventListener('resize', resize, { passive: true });
+
+  // Main Render Loop
+  const render = () => {
+    currentScrollY = lerp(currentScrollY, targetScrollY, 0.12);
+
+    ctx.clearRect(0, 0, W, H);
+
+    // 1. Update positions with parallax & physics
+    for (let i = 0; i < nodes.length; i++) {
+      nodes[i].update(W, H, currentScrollY);
+    }
+
+    // 2. Draw Neural Network connections
+    const maxDist = Math.min(135, Math.max(90, W * 0.088));
+    const maxDistSq = maxDist * maxDist;
+
+    ctx.lineWidth = 0.85;
+
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        const dx = a.renderX - b.renderX;
+        const dy = a.renderY - b.renderY;
+        const distSq = dx * dx + dy * dy;
+
+        if (distSq < maxDistSq) {
+          const dist = Math.sqrt(distSq);
+          const proximity = 1 - dist / maxDist;
+          const depthFactor = (a.z + b.z) * 0.5;
+          const alpha = proximity * 0.35 * depthFactor;
+
+          if (alpha > 0.015) {
+            ctx.beginPath();
+            ctx.moveTo(a.renderX, a.renderY);
+            ctx.lineTo(b.renderX, b.renderY);
+
+            const mr = Math.round((a.color.r + b.color.r) * 0.5);
+            const mg = Math.round((a.color.g + b.color.g) * 0.5);
+            const mb = Math.round((a.color.b + b.color.b) * 0.5);
+
+            ctx.strokeStyle = `rgba(${mr}, ${mg}, ${mb}, ${alpha})`;
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Synapse connection to user mouse cursor
+      if (mouse.active) {
+        const mdx = a.renderX - mouse.x;
+        const mdy = a.renderY - mouse.y;
+        const mDistSq = mdx * mdx + mdy * mdy;
+        const mMax = mouse.radius * 0.95;
+        if (mDistSq < mMax * mMax) {
+          const mDist = Math.sqrt(mDistSq);
+          const mAlpha = (1 - mDist / mMax) * 0.45 * a.z;
+          ctx.beginPath();
+          ctx.moveTo(a.renderX, a.renderY);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.strokeStyle = `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${mAlpha})`;
+          ctx.stroke();
+        }
+      }
+    }
+
+    // 3. Render all nodes
+    for (let i = 0; i < nodes.length; i++) {
+      nodes[i].draw(ctx);
+    }
+
+    rafId = requestAnimationFrame(render);
+  };
+
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { cancelAnimationFrame(raf); raf = null; }
-    else if (!raf) loop();
+    if (document.hidden) {
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    } else {
+      if (!rafId && !prefersReducedMotion()) {
+        targetScrollY = currentScrollY = window.scrollY;
+        rafId = requestAnimationFrame(render);
+      }
+    }
   });
 
-  init();
-  io.observe(canvas);
-  loop();
+  resize();
+
+  if (!prefersReducedMotion()) {
+    rafId = requestAnimationFrame(render);
+  } else {
+    for (let i = 0; i < nodes.length; i++) {
+      nodes[i].update(W, H, 0);
+      nodes[i].draw(ctx);
+    }
+  }
 })();
 
 /* ─── 5. Dynamic Typing Effect ────────────────────────────────── */

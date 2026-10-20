@@ -293,17 +293,25 @@ body.cursor-active .cursor-dot {
 .reveal:nth-child(3) { transition-delay: .12s; }
 .reveal:nth-child(4) { transition-delay: .18s; }
 
+/* ─── Neural Network Constellation Canvas ───────────────────────── */
+.neural-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 70% at 50% 25%, #07070b 0%, #000000 85%);
+  will-change: transform;
+}
+
 /* ─── HERO ────────────────────────────────────────────────────────── */
 .hero {
   min-height: 100svh; display: flex; align-items: center;
   position: relative; overflow: hidden;
   padding-top: var(--nav-h);
-  background: radial-gradient(circle at 50% 35%, #0d0d0d 0%, #000000 80%);
-}
-
-.hero-canvas {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  opacity: .5; pointer-events: none;
+  background: transparent;
 }
 
 .hero-grid {
@@ -424,7 +432,7 @@ body.cursor-active .cursor-dot {
 }
 
 /* ─── ABOUT ───────────────────────────────────────────────────────── */
-.about { background: var(--canvas); }
+.about { background: transparent; }
 
 .about-grid {
   display: grid; grid-template-columns: 1.15fr 420px; gap: 4.5rem;
@@ -569,7 +577,11 @@ body.cursor-active .cursor-dot {
 }
 
 /* ─── PROJECTS ────────────────────────────────────────────────────── */
-.projects { background: var(--canvas-raised); }
+.projects {
+  background: rgba(4, 4, 6, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
 
 .projects-grid {
   display: grid;
@@ -680,7 +692,7 @@ body.cursor-active .cursor-dot {
 }
 
 /* ─── SKILLS ─────────────────────────────────────────────────────── */
-.skills { background: var(--canvas); }
+.skills { background: transparent; }
 
 .skills-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -766,7 +778,11 @@ body.cursor-active .cursor-dot {
 }
 
 /* ─── CONTACT ────────────────────────────────────────────────────── */
-.contact { background: var(--canvas-raised); }
+.contact {
+  background: rgba(4, 4, 6, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
 
 .contact-grid {
   display: grid; grid-template-columns: 360px 1fr; gap: 4rem;
@@ -835,7 +851,10 @@ body.cursor-active .cursor-dot {
 
 /* ─── FOOTER ─────────────────────────────────────────────────────── */
 .footer {
-  background: var(--canvas); border-top: 1px solid rgba(255, 90, 0, 0.1);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 90, 0, 0.1);
   padding: 3rem 0;
 }
 .footer-inner {
