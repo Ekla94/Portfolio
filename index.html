@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eklavya Srivastava — AI/ML Engineer & Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Eklavya Srivastava, B.Tech CS+AI/ML student at VIT Vellore. Hackathon winner, full-stack developer, team leader." />
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Eklavya Srivastava — Portfolio" />
+  <meta property="og:description" content="AI/ML Enthusiast. Hackathon Winner. Full-Stack Developer." />
+  <meta property="og:type" content="website" />
+  <!-- DEPLOY STEP: replace with live URL -->
+  <meta property="og:url" content="https://eklavyasrivastava.dev" />
+  <meta property="og:image" content="https://eklavyasrivastava.dev/assets/og-cover.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <!-- Skip link -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Eklavya Srivastava — home">
+        <span class="nav-logo-bracket">[</span>ES<span class="nav-logo-bracket">]</span>
+      </a>
+      <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-menu" role="list">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li><a href="assets/Eklavya_Resume.pdf" class="nav-cta btn-outline" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <!-- Particle canvas background -->
+      <canvas class="hero-canvas" aria-hidden="true"></canvas>
+      <!-- Grid overlay -->
+      <div class="hero-grid" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <p class="hero-label chip">
+          <span class="hero-dot" aria-hidden="true"></span>
+          VIT Vellore · CS + AI/ML
+        </p>
+        <h1 class="hero-name">
+          <span class="hero-name-first">Eklavya</span>
+          <span class="hero-name-last">Srivastava</span>
+        </h1>
+        <div class="hero-roles" aria-live="polite" aria-label="Roles">
+          <span class="hero-role-prefix">I am a</span>
+          <span class="hero-role-typed" id="typed-role"></span>
+          <span class="hero-cursor-blink" aria-hidden="true">|</span>
+        </div>
+        <p class="hero-sub">
+          Hey there! I actually coded and built this entire website myself.
+          <br />Passionate builder. Team leader. Problem-solver.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+        <div class="hero-scroll-cue" aria-hidden="true">
+          <span class="scroll-cue-line"></span>
+          <span class="scroll-cue-label">scroll</span>
+        </div>
+      </div>
+
+      <!-- Floating accent shapes -->
+      <div class="hero-accent-1" aria-hidden="true"></div>
+      <div class="hero-accent-2" aria-hidden="true"></div>
+    </section>
+
+    <!-- ═══════════ ABOUT ═══════════ -->
+    <section class="section about" id="about" aria-label="About me">
+      <div class="container">
+        <div class="section-label chip reveal">
+          <span class="mono">01.</span> About Me
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <h2 class="section-heading">Builder by instinct.<br />Engineer by training.</h2>
+            <p class="about-body">
+              I'm Eklavya Srivastava, a B.Tech student at VIT Vellore pursuing Computer Science with a specialization in Artificial Intelligence and Machine Learning. I spend most of my time at the intersection of clean code and creative problem-solving.
+            </p>
+            <p class="about-body">
+              At VIT, I've developed a habit of jumping into the hardest problems first. I've led teams under pressure in multiple hackathons, turning half-baked ideas into working products overnight. That mix of technical depth and team leadership is what I bring to every project.
+            </p>
+            <p class="about-body about-easter-egg">
+              I built this whole site from scratch — every line of HTML, CSS, and JavaScript. No templates, no page builders. Just code.
+            </p>
+            <div class="about-stats">
+              <div class="stat-card reveal">
+                <span class="stat-number" data-target="5">0</span><span class="stat-plus">+</span>
+                <span class="stat-label">Hackathons</span>
+              </div>
+              <div class="stat-card reveal">
+                <span class="stat-number" data-target="10">0</span><span class="stat-plus">+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-card reveal">
+                <span class="stat-number" data-target="1">0</span>
+                <span class="stat-label">HackGrid Win</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-visual reveal">
+            <div class="about-card-frame">
+              <div class="about-card-inner">
+                <div class="about-avatar-placeholder" aria-label="Eklavya Srivastava">
+                  <span class="avatar-initials">ES</span>
+                  <div class="avatar-ring-1" aria-hidden="true"></div>
+                  <div class="avatar-ring-2" aria-hidden="true"></div>
+                </div>
+                <div class="about-card-tags">
+                  <span class="tag">AI / ML</span>
+                  <span class="tag">Full-Stack</span>
+                  <span class="tag">Team Leader</span>
+                  <span class="tag">VIT Vellore</span>
+                </div>
+              </div>
+              <div class="about-card-glow" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ PROJECTS ═══════════ -->
+    <section class="section projects" id="projects" aria-label="Projects showcase">
+      <div class="container">
+        <div class="section-label chip reveal">
+          <span class="mono">02.</span> Projects
+        </div>
+        <h2 class="section-heading reveal">Things I've built.</h2>
+        <p class="section-sub reveal">Live products, hackathon winners, and experiments worth showing.</p>
+
+        <div class="projects-grid">
+
+          <!-- KhetiNex — FEATURED -->
+          <article class="project-card project-card--featured tilt-card reveal" aria-label="KhetiNex project">
+            <div class="project-card-inner">
+              <div class="project-card-glow" aria-hidden="true"></div>
+              <div class="project-header">
+                <div class="project-badges">
+                  <span class="badge badge--win">🏆 HackGrid'26 Winner</span>
+                  <span class="badge badge--role">Team Leader</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/Ekla94" class="project-link" target="_blank" rel="noopener" aria-label="KhetiNex GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="KhetiNex Live Demo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg class="project-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M32 8C18.745 8 8 18.745 8 32s10.745 24 24 24 24-10.745 24-24S45.255 8 32 8z" stroke="var(--accent)" stroke-width="2" fill="none" opacity="0.3"/>
+                  <path d="M20 36c0-6.627 5.373-12 12-12s12 5.373 12 12" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="32" cy="24" r="4" fill="var(--accent)" opacity="0.8"/>
+                  <path d="M16 44h32M24 40l4-8 4 4 4-10 4 6" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                </svg>
+              </div>
+              <h3 class="project-title">KhetiNex</h3>
+              <p class="project-desc">
+                An AI-powered agricultural intelligence platform connecting farmers with real-time crop advisory, market price predictions, and smart irrigation recommendations. Built as Team Leader at HackGrid'26, VIT Vellore — and we won.
+              </p>
+              <div class="project-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">ML Models</span>
+                <span class="tech-tag">MongoDB</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card tilt-card reveal" aria-label="Hackathon project placeholder">
+            <div class="project-card-inner">
+              <div class="project-card-glow" aria-hidden="true"></div>
+              <div class="project-header">
+                <div class="project-badges">
+                  <span class="badge badge--hack">Hackathon</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/Ekla94" class="project-link" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg class="project-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="12" y="12" width="16" height="16" rx="2" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                  <rect x="36" y="12" width="16" height="16" rx="2" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                  <rect x="12" y="36" width="16" height="16" rx="2" stroke="var(--accent)" stroke-width="2" opacity="0.5"/>
+                  <rect x="36" y="36" width="16" height="16" rx="2" stroke="var(--accent)" stroke-width="2" opacity="0.8"/>
+                  <line x1="28" y1="20" x2="36" y2="20" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 2"/>
+                  <line x1="20" y1="28" x2="20" y2="36" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 2"/>
+                  <line x1="44" y1="28" x2="44" y2="36" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 2"/>
+                  <line x1="28" y1="44" x2="36" y2="44" stroke="var(--accent)" stroke-width="2" stroke-dasharray="2 2"/>
+                </svg>
+              </div>
+              <h3 class="project-title">Neural Connect <span class="coming-soon">Coming Soon</span></h3>
+              <p class="project-desc">
+                Real-time collaborative AI workspace for distributed teams. Built during a 36-hour sprint. Intelligent context sharing, live cursors, and ML-assisted task decomposition.
+              </p>
+              <div class="project-stack">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">WebSockets</span>
+                <span class="tech-tag">TensorFlow.js</span>
+                <span class="tech-tag">PostgreSQL</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card tilt-card reveal" aria-label="Hackathon project placeholder">
+            <div class="project-card-inner">
+              <div class="project-card-glow" aria-hidden="true"></div>
+              <div class="project-header">
+                <div class="project-badges">
+                  <span class="badge badge--hack">Hackathon</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/Ekla94" class="project-link" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg class="project-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="32" cy="32" r="20" stroke="var(--accent)" stroke-width="2" opacity="0.3"/>
+                  <path d="M32 12v20l14 8" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="32" cy="32" r="3" fill="var(--accent)"/>
+                  <path d="M20 20l4 4M44 20l-4 4M20 44l4-4M44 44l-4-4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                </svg>
+              </div>
+              <h3 class="project-title">PulsePredict <span class="coming-soon">Coming Soon</span></h3>
+              <p class="project-desc">
+                A time-series ML system for predicting infrastructure load patterns. Deployed a lightweight LSTM pipeline with sub-100ms inference latency, built in a 48-hour hackathon.
+              </p>
+              <div class="project-stack">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">PyTorch</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Redis</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card tilt-card reveal" aria-label="Full-stack project">
+            <div class="project-card-inner">
+              <div class="project-card-glow" aria-hidden="true"></div>
+              <div class="project-header">
+                <div class="project-badges">
+                  <span class="badge badge--fs">Full-Stack</span>
+                </div>
+                <div class="project-links">
+                  <a href="https://github.com/Ekla94" class="project-link" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </a>
+                  <a href="#" class="project-link" target="_blank" rel="noopener" aria-label="Live Demo">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="project-icon-wrap" aria-hidden="true">
+                <svg class="project-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="8" y="16" width="48" height="32" rx="4" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                  <path d="M8 24h48" stroke="var(--accent)" stroke-width="2" opacity="0.4"/>
+                  <circle cx="16" cy="20" r="2" fill="var(--accent)" opacity="0.6"/>
+                  <circle cx="22" cy="20" r="2" fill="var(--accent)" opacity="0.4"/>
+                  <circle cx="28" cy="20" r="2" fill="var(--accent)" opacity="0.3"/>
+                  <path d="M18 34l6 6 14-14" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3 class="project-title">DevDash <span class="coming-soon">Coming Soon</span></h3>
+              <p class="project-desc">
+                A developer productivity platform with a smart task queue, GitHub integration, and an ML-powered sprint velocity predictor. Built to scratch my own itch.
+              </p>
+              <div class="project-stack">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">GitHub API</span>
+                <span class="tech-tag">scikit-learn</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ SKILLS ═══════════ -->
+    <section class="section skills" id="skills" aria-label="Technical skills">
+      <div class="container">
+        <div class="section-label chip reveal">
+          <span class="mono">03.</span> Skills
+        </div>
+        <h2 class="section-heading reveal">What I work with.</h2>
+
+        <div class="skills-grid">
+          <div class="skill-group reveal">
+            <h3 class="skill-group-title">
+              <span class="skill-icon" aria-hidden="true">⚙️</span> Languages
+            </h3>
+            <div class="skill-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">JavaScript</span>
+              <span class="skill-pill">TypeScript</span>
+              <span class="skill-pill">C++</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">SQL</span>
+            </div>
+          </div>
+          <div class="skill-group reveal">
+            <h3 class="skill-group-title">
+              <span class="skill-icon" aria-hidden="true">🤖</span> AI / ML
+            </h3>
+            <div class="skill-pills">
+              <span class="skill-pill">PyTorch</span>
+              <span class="skill-pill">TensorFlow</span>
+              <span class="skill-pill">scikit-learn</span>
+              <span class="skill-pill">LangChain</span>
+              <span class="skill-pill">Pandas</span>
+              <span class="skill-pill">NumPy</span>
+            </div>
+          </div>
+          <div class="skill-group reveal">
+            <h3 class="skill-group-title">
+              <span class="skill-icon" aria-hidden="true">🌐</span> Web & Backend
+            </h3>
+            <div class="skill-pills">
+              <span class="skill-pill">React</span>
+              <span class="skill-pill">Next.js</span>
+              <span class="skill-pill">Node.js</span>
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">Express</span>
+              <span class="skill-pill">REST / GraphQL</span>
+            </div>
+          </div>
+          <div class="skill-group reveal">
+            <h3 class="skill-group-title">
+              <span class="skill-icon" aria-hidden="true">🛠</span> Tools & Infra
+            </h3>
+            <div class="skill-pills">
+              <span class="skill-pill">Git</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">MongoDB</span>
+              <span class="skill-pill">PostgreSQL</span>
+              <span class="skill-pill">Redis</span>
+              <span class="skill-pill">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive moment: press and hold -->
+        <div class="interactive-moment reveal" id="skill-moment" aria-label="Interactive skill demo">
+          <p class="moment-label mono">// Press and hold to unlock</p>
+          <button class="moment-btn" id="moment-btn" aria-label="Press and hold to reveal skill" aria-pressed="false">
+            <span class="moment-btn-inner">
+              <span class="moment-progress-ring" aria-hidden="true">
+                <svg viewBox="0 0 80 80">
+                  <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,90,0,0.15)" stroke-width="4"/>
+                  <circle class="moment-ring-fill" cx="40" cy="40" r="34" fill="none" stroke="var(--accent)" stroke-width="4"
+                    stroke-dasharray="213.6" stroke-dashoffset="213.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="moment-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 11V6a2 2 0 00-2-2v0a2 2 0 00-2 2v0M14 10V4a2 2 0 00-2-2v0a2 2 0 00-2 2v2M10 10.5V6a2 2 0 00-2-2v0a2 2 0 00-2 2v8"/><path d="M18 11a2 2 0 114 0v3a8 8 0 01-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 012.83-2.82L7 15"/></svg>
+              </span>
+            </span>
+          </button>
+          <div class="moment-reveal" id="moment-reveal" aria-live="polite">
+            <p class="moment-reveal-text">Hackathon mode: <span class="accent">ON</span></p>
+            <p class="moment-reveal-sub">No sleep. All ship.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section class="section contact" id="contact" aria-label="Contact">
+      <div class="container">
+        <div class="section-label chip reveal">
+          <span class="mono">04.</span> Contact
+        </div>
+        <h2 class="section-heading reveal">Let's build something.</h2>
+        <p class="section-sub reveal">I'm always open to the right project, team, or conversation. Reach out.</p>
+
+        <div class="contact-grid">
+          <div class="contact-links reveal">
+            <a href="https://github.com/Ekla94" class="contact-card" target="_blank" rel="noopener" aria-label="GitHub profile">
+              <span class="contact-card-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </span>
+              <div class="contact-card-text">
+                <span class="contact-card-label">GitHub</span>
+                <span class="contact-card-handle">@Ekla94</span>
+              </div>
+              <span class="contact-card-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/eklavya-srivastava-b02709441" class="contact-card" target="_blank" rel="noopener" aria-label="LinkedIn profile">
+              <span class="contact-card-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </span>
+              <div class="contact-card-text">
+                <span class="contact-card-label">LinkedIn</span>
+                <span class="contact-card-handle">Eklavya Srivastava</span>
+              </div>
+              <span class="contact-card-arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a href="mailto:eklavya@example.com" class="contact-card" aria-label="Email me">
+              <span class="contact-card-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <div class="contact-card-text">
+                <span class="contact-card-label">Email</span>
+                <span class="contact-card-handle">Say hello</span>
+              </div>
+              <span class="contact-card-arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <form class="contact-form reveal" id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <label class="form-label" for="form-name">Name</label>
+              <input class="form-input" type="text" id="form-name" name="name" placeholder="Your name" required autocomplete="name" />
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="form-email">Email</label>
+              <input class="form-input" type="email" id="form-email" name="email" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="form-message">Message</label>
+              <textarea class="form-input form-textarea" id="form-message" name="message" placeholder="What are you working on?" required rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <span class="submit-label">Send Message</span>
+              <span class="submit-arrow" aria-hidden="true">→</span>
+            </button>
+            <p class="form-success" id="form-success" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="footer-logo">
+            <span class="nav-logo-bracket">[</span>ES<span class="nav-logo-bracket">]</span>
+          </span>
+          <span class="footer-copy">Eklavya Srivastava · 2026</span>
+        </div>
+        <div class="footer-right">
+          <a href="https://github.com/Ekla94" class="footer-link" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+          <a href="https://www.linkedin.com/in/eklavya-srivastava-b02709441" class="footer-link" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
+        </div>
+      </div>
+      <p class="footer-quote"><em>"Look at life from different perspectives"</em> - Eklavya.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/main.js" defer></script>
+</body>
+</html>
