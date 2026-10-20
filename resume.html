@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Eklavya Srivastava | AI/ML Engineer & Full-Stack Developer</title>
+  <meta name="description" content="Resume of Eklavya Srivastava — B.Tech Computer Science (AI/ML) at VIT Vellore, HackGrid'26 Winner, Team Leader, and Full-Stack Developer." />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --canvas: #000000;
+      --canvas-card: #0a0a0a;
+      --panel: #111111;
+      --panel-border: rgba(255, 90, 0, 0.18);
+      --accent: #ff5a00;
+      --accent-hover: #ff7728;
+      --accent-glow: rgba(255, 90, 0, 0.3);
+      --text-primary: #ffffff;
+      --text-secondary: #aaaaaa;
+      --text-muted: #666666;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--canvas);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 5rem;
+    }
+
+    .mono { font-family: var(--font-mono); }
+    .accent { color: var(--accent); }
+
+    /* Top Navigation Bar */
+    .resume-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 90, 0, 0.15);
+      padding: 1rem 2rem;
+    }
+    .resume-nav-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--text-secondary); font-size: .9rem; font-weight: 500;
+      text-decoration: none; transition: color .2s, transform .2s;
+    }
+    .back-btn:hover { color: var(--accent); transform: translateX(-3px); }
+
+    .nav-actions { display: flex; align-items: center; gap: 1rem; }
+    .print-btn {
+      background: var(--accent); color: #000; font-weight: 700;
+      border: none; border-radius: 6px; padding: .5rem 1.15rem;
+      font-family: var(--font-display); font-size: .85rem;
+      cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
+      transition: background .2s, box-shadow .2s;
+    }
+    .print-btn:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    /* Resume Document Wrapper */
+    .resume-container {
+      max-width: 960px; margin: 2.5rem auto 0;
+      padding: 0 1.5rem;
+    }
+
+    .resume-paper {
+      background: var(--canvas-card);
+      border: 1px solid var(--panel-border);
+      border-radius: 16px;
+      padding: 3.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 90, 0, 0.05);
+    }
+
+    /* Resume Header */
+    .header-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      border-bottom: 1px solid rgba(255, 90, 0, 0.2);
+      padding-bottom: 2rem; margin-bottom: 2.5rem;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .candidate-name {
+      font-family: var(--font-display); font-size: 2.6rem; font-weight: 700;
+      line-height: 1.1; letter-spacing: -0.02em;
+    }
+    .candidate-title {
+      font-size: 1.15rem; color: var(--accent); font-weight: 500; margin-top: .4rem;
+    }
+    .candidate-sub {
+      font-size: .92rem; color: var(--text-secondary); margin-top: .25rem;
+    }
+
+    .contact-details {
+      display: flex; flex-direction: column; gap: .4rem;
+      text-align: right; font-family: var(--font-mono); font-size: .82rem;
+    }
+    .contact-item {
+      color: var(--text-secondary); text-decoration: none;
+      display: inline-flex; align-items: center; gap: .5rem; justify-content: flex-end;
+      transition: color .2s;
+    }
+    .contact-item:hover { color: var(--accent); }
+
+    /* Sections */
+    .resume-section { margin-bottom: 2.75rem; }
+    .resume-section:last-child { margin-bottom: 0; }
+
+    .section-title {
+      font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
+      color: var(--accent); letter-spacing: -0.01em;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: .5rem; margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+
+    /* Items */
+    .resume-item { margin-bottom: 1.75rem; }
+    .resume-item:last-child { margin-bottom: 0; }
+
+    .item-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: .25rem; flex-wrap: wrap; gap: .5rem;
+    }
+    .item-title {
+      font-size: 1.05rem; font-weight: 600; color: #ffffff;
+    }
+    .item-meta {
+      font-family: var(--font-mono); font-size: .82rem; color: var(--accent);
+    }
+    .item-sub {
+      font-size: .92rem; color: var(--text-secondary); margin-bottom: .6rem;
+    }
+    .item-bullets {
+      list-style: none; padding-left: 0;
+    }
+    .item-bullets li {
+      position: relative; padding-left: 1.25rem; margin-bottom: .45rem;
+      font-size: .92rem; color: #cccccc;
+    }
+    .item-bullets li::before {
+      content: '▹'; position: absolute; left: 0;
+      color: var(--accent); font-size: .85rem;
+    }
+
+    /* Skills Grid in Resume */
+    .skills-block {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .skill-category {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 90, 0, 0.12);
+      border-radius: 8px; padding: 1rem 1.25rem;
+    }
+    .category-name {
+      font-family: var(--font-display); font-size: .88rem; font-weight: 600;
+      color: var(--accent); margin-bottom: .45rem;
+    }
+    .category-skills {
+      font-family: var(--font-mono); font-size: .8rem; color: #bbb; line-height: 1.6;
+    }
+
+    /* Badge */
+    .award-tag {
+      display: inline-block;
+      background: rgba(255, 90, 0, 0.15); border: 1px solid rgba(255, 90, 0, 0.4);
+      color: var(--accent); font-size: .75rem; font-family: var(--font-mono);
+      font-weight: 600; padding: .15rem .5rem; border-radius: 4px;
+      margin-left: .5rem;
+    }
+
+    /* Print Styles */
+    @media print {
+      body { background: #fff; color: #111; padding: 0; }
+      .resume-nav { display: none !important; }
+      .resume-container { max-width: 100%; margin: 0; padding: 0; }
+      .resume-paper {
+        background: #fff; border: none; padding: 1.5cm;
+        box-shadow: none;
+      }
+      .candidate-name, .item-title { color: #000 !important; }
+      .candidate-title, .section-title, .item-meta, .award-tag { color: #d44900 !important; }
+      .candidate-sub, .item-sub, .contact-item, .item-bullets li { color: #333 !important; }
+      .section-title { border-bottom-color: #ddd !important; }
+      .header-top { border-bottom-color: #ddd !important; }
+      .item-bullets li::before { color: #d44900 !important; }
+      .skill-category {
+        border-color: #ddd !important; background: #fafafa !important;
+      }
+      .category-name { color: #d44900 !important; }
+      .category-skills { color: #222 !important; }
+      a { text-decoration: none; color: inherit; }
+    }
+
+    @media (max-width: 720px) {
+      .resume-paper { padding: 2rem 1.25rem; }
+      .candidate-name { font-size: 2rem; }
+      .contact-details { text-align: left; }
+      .contact-item { justify-content: flex-start; }
+      .header-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Bar -->
+  <nav class="resume-nav">
+    <div class="resume-nav-inner">
+      <a href="index.html" class="back-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Back to Portfolio
+      </a>
+      <div class="nav-actions">
+        <button class="print-btn" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Resume Container -->
+  <main class="resume-container">
+    <div class="resume-paper">
+
+      <!-- Header -->
+      <header class="header-top">
+        <div>
+          <h1 class="candidate-name">Eklavya Srivastava</h1>
+          <p class="candidate-title">Computer Science & Artificial Intelligence / ML Engineer</p>
+          <p class="candidate-sub">Vellore Institute of Technology (VIT), Vellore</p>
+        </div>
+        <div class="contact-details">
+          <a href="mailto:Eklavya0904@gmail.com" class="contact-item">
+            <span>Eklavya0904@gmail.com</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+          <a href="https://github.com/Ekla94" class="contact-item" target="_blank" rel="noopener">
+            <span>github.com/Ekla94</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/eklavya-srivastava-b02709441" class="contact-item" target="_blank" rel="noopener">
+            <span>linkedin.com/in/eklavya-srivastava</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <span class="contact-item">Vellore, Tamil Nadu, India</span>
+        </div>
+      </header>
+
+      <!-- Profile Summary -->
+      <section class="resume-section">
+        <h2 class="section-title">Professional Summary</h2>
+        <p style="color: #cccccc; font-size: .95rem; line-height: 1.7;">
+          Driven Computer Science undergraduate at VIT Vellore specializing in Artificial Intelligence and Machine Learning. Proven track record as a hackathon-winning Team Leader (HackGrid'26 Winner) with extensive experience architecting high-throughput full-stack web applications and deploying predictive ML pipelines. Adept at turning complex challenges into production-ready software under high-stakes hackathon timeframes.
+        </p>
+      </section>
+
+      <!-- Education -->
+      <section class="resume-section">
+        <h2 class="section-title">Education</h2>
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">Vellore Institute of Technology (VIT)</span>
+            <span class="item-meta">2024 – 2028 (Expected)</span>
+          </div>
+          <p class="item-sub">Bachelor of Technology (B.Tech) in Computer Science & Engineering (Spec. in AI & ML) · Vellore, India</p>
+          <ul class="item-bullets">
+            <li>Core Studies: Data Structures & Algorithms, Machine Learning, Deep Neural Networks, Database Systems, Object-Oriented Programming, Web Technologies.</li>
+            <li>Leadership: Active hackathon team leader and technical contributor in university competitive developer clubs.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Honors & Hackathons -->
+      <section class="resume-section">
+        <h2 class="section-title">Honors & Hackathon Achievements</h2>
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">🏆 1st Place Winner — HackGrid'26</span>
+            <span class="item-meta">VIT Vellore · 2026</span>
+          </div>
+          <p class="item-sub">Team Leader for <strong>KhetiNex</strong> <span class="award-tag">Champion</span></p>
+          <ul class="item-bullets">
+            <li>Led a cross-functional engineering team through an intensive 36-hour sprint, developing an AI agricultural intelligence platform.</li>
+            <li>Spearheaded system architecture, model integration, and delivered the winning live demonstration to panel of industry judges.</li>
+          </ul>
+        </div>
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">Hackathon Sprint Lead (5+ Hackathons)</span>
+            <span class="item-meta">2024 – Present</span>
+          </div>
+          <p class="item-sub">Competitive Hackathons & Sprints</p>
+          <ul class="item-bullets">
+            <li>Directed and participated in 5+ high-pressure hackathons, consistently architecting and shipping working MVPs from scratch within 24 to 48 hours.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Technical Projects -->
+      <section class="resume-section">
+        <h2 class="section-title">Featured Projects</h2>
+        
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">KhetiNex — Intelligent Agricultural Ecosystem</span>
+            <span class="item-meta">React · Node.js · Python ML · MongoDB</span>
+          </div>
+          <p class="item-sub">Team Leader & Full-Stack Architect</p>
+          <ul class="item-bullets">
+            <li>Architected a real-time smart agriculture platform delivering predictive crop disease detection and localized market trend forecasts.</li>
+            <li>Integrated automated IoT sensor data streams with custom scikit-learn models for precision irrigation scheduling.</li>
+            <li>Constructed clean, responsive UI in React with resilient Node.js REST API microservices.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">PulsePredict — Time-Series Infrastructure Load Forecaster</span>
+            <span class="item-meta">Python · PyTorch · FastAPI · Redis</span>
+          </div>
+          <p class="item-sub">AI/ML Developer</p>
+          <ul class="item-bullets">
+            <li>Trained and tuned a lightweight LSTM recurrent neural network predicting cloud server traffic spikes with sub-100ms inference latency.</li>
+            <li>Built an asynchronous FastAPI pipeline backed by Redis in-memory caching to serve high-concurrency real-time forecasts.</li>
+          </ul>
+        </div>
+
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">Neural Connect — Real-time Distributed AI Workspace</span>
+            <span class="item-meta">Next.js · WebSockets · TypeScript · PostgreSQL</span>
+          </div>
+          <p class="item-sub">Full-Stack Developer</p>
+          <ul class="item-bullets">
+            <li>Implemented a synchronized multi-user digital workspace featuring live cursor tracking and concurrent document editing via WebSockets.</li>
+            <li>Engineered automated task decomposition assistants leveraging generative AI APIs and structured prompt chains.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="resume-section">
+        <h2 class="section-title">Technical Competencies</h2>
+        <div class="skills-block">
+          <div class="skill-category">
+            <h3 class="category-name">Programming Languages</h3>
+            <p class="category-skills">Python, C++, JavaScript (ES6+), TypeScript, Java, SQL, HTML5, CSS3</p>
+          </div>
+          <div class="skill-category">
+            <h3 class="category-name">AI / Machine Learning</h3>
+            <p class="category-skills">PyTorch, TensorFlow, scikit-learn, LangChain, NumPy, Pandas, Computer Vision (OpenCV)</p>
+          </div>
+          <div class="skill-category">
+            <h3 class="category-name">Web & Backend</h3>
+            <p class="category-skills">React.js, Next.js, Node.js, Express.js, FastAPI, RESTful APIs, WebSockets</p>
+          </div>
+          <div class="skill-category">
+            <h3 class="category-name">DevOps, DB & Tools</h3>
+            <p class="category-skills">PostgreSQL, MongoDB, Redis, Docker, Git, GitHub, Linux, Vercel</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+</body>
+</html>

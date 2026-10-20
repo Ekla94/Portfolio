@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Eklavya Srivastava — AI/ML Engineer & Full-Stack Developer</title>
   <meta name="description" content="Portfolio of Eklavya Srivastava, B.Tech CS+AI/ML student at VIT Vellore. Hackathon winner, full-stack developer, team leader." />
-  <meta name="theme-color" content="#0a0a0f" />
+  <meta name="theme-color" content="#000000" />
 
   <!-- Open Graph -->
   <meta property="og:title" content="Eklavya Srivastava — Portfolio" />
@@ -41,7 +41,8 @@
   <nav class="nav" aria-label="Site navigation">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo" aria-label="Eklavya Srivastava — home">
-        <span class="nav-logo-bracket">[</span>ES<span class="nav-logo-bracket">]</span>
+        <img src="assets/logo.svg" alt="ES" class="nav-logo-icon" width="38" height="38" />
+        <span class="nav-logo-text">Eklavya<span class="accent">.</span></span>
       </a>
       <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
         <span></span><span></span><span></span>
@@ -51,7 +52,7 @@
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
-        <li><a href="assets/Eklavya_Resume.pdf" class="nav-cta btn-outline" target="_blank" rel="noopener">Resume</a></li>
+        <li><a href="resume.html" class="nav-cta btn-outline">Resume</a></li>
       </ul>
     </div>
   </nav>
@@ -66,10 +67,11 @@
       <div class="hero-grid" aria-hidden="true"></div>
 
       <div class="hero-content">
-        <p class="hero-label chip">
+        <div class="hero-portrait-badge">
+          <img src="assets/eklavya.png" alt="Eklavya Srivastava" class="hero-mini-avatar" />
+          <span class="hero-badge-text">VIT Vellore · B.Tech CS + AI/ML</span>
           <span class="hero-dot" aria-hidden="true"></span>
-          VIT Vellore · CS + AI/ML
-        </p>
+        </div>
         <h1 class="hero-name">
           <span class="hero-name-first">Eklavya</span>
           <span class="hero-name-last">Srivastava</span>
@@ -81,10 +83,11 @@
         </div>
         <p class="hero-sub">
           Hey there! I actually coded and built this entire website myself.
-          <br />Passionate builder. Team leader. Problem-solver.
+          <br />AI/ML specialist, full-stack architect, and HackGrid'26 champion at VIT Vellore.
         </p>
         <div class="hero-ctas">
           <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="resume.html" class="btn btn-ghost">View Resume</a>
           <a href="#contact" class="btn btn-ghost">Get In Touch</a>
         </div>
         <div class="hero-scroll-cue" aria-hidden="true">
@@ -136,15 +139,27 @@
           <div class="about-visual reveal">
             <div class="about-card-frame">
               <div class="about-card-inner">
-                <div class="about-avatar-placeholder" aria-label="Eklavya Srivastava">
-                  <span class="avatar-initials">ES</span>
-                  <div class="avatar-ring-1" aria-hidden="true"></div>
-                  <div class="avatar-ring-2" aria-hidden="true"></div>
+                <div class="about-portrait-wrapper">
+                  <div class="about-portrait-hud" aria-hidden="true">
+                    <span class="hud-corner hud-tl"></span>
+                    <span class="hud-corner hud-tr"></span>
+                    <span class="hud-corner hud-bl"></span>
+                    <span class="hud-corner hud-br"></span>
+                    <div class="hud-status">
+                      <span class="hud-dot"></span>
+                      <span>SYS.ACTIVE // VIT VELLORE</span>
+                    </div>
+                  </div>
+                  <img src="assets/eklavya.png" alt="Eklavya Srivastava" class="about-portrait-img" loading="eager" />
+                </div>
+                <div class="about-portrait-meta">
+                  <h3 class="about-name">Eklavya Srivastava</h3>
+                  <p class="about-role-tag mono">CS + AI/ML · Team Leader</p>
                 </div>
                 <div class="about-card-tags">
+                  <span class="tag tag--accent">HackGrid'26 Winner</span>
                   <span class="tag">AI / ML</span>
                   <span class="tag">Full-Stack</span>
-                  <span class="tag">Team Leader</span>
                   <span class="tag">VIT Vellore</span>
                 </div>
               </div>
@@ -493,12 +508,11 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-left">
-          <span class="footer-logo">
-            <span class="nav-logo-bracket">[</span>ES<span class="nav-logo-bracket">]</span>
-          </span>
-          <span class="footer-copy">Eklavya Srivastava · 2026</span>
+          <img src="assets/logo.svg" alt="ES" class="footer-logo-img" width="32" height="32" />
+          <span class="footer-copy">Eklavya Srivastava · VIT Vellore · 2026</span>
         </div>
         <div class="footer-right">
+          <a href="resume.html" class="footer-link">Resume</a>
           <a href="https://github.com/Ekla94" class="footer-link" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
           <a href="https://www.linkedin.com/in/eklavya-srivastava-b02709441" class="footer-link" target="_blank" rel="noopener" aria-label="LinkedIn">LI</a>
         </div>
