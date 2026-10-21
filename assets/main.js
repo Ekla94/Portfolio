@@ -736,17 +736,16 @@ document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('paused', document.hidden);
 });
 
-/* ─── 14. White / Dark Theme Controller (Reference Image Styling) ─ */
+/* ─── 14. White / Dark Theme Controller (Icon Only) ─────────────── */
 (function initThemeToggle() {
   const toggleBtn = $('#theme-toggle');
   if (!toggleBtn) return;
 
-  const label = toggleBtn.querySelector('.theme-toggle-label');
   const syncUI = (theme) => {
     const isLight = theme === 'light';
-    if (label) label.textContent = isLight ? 'Dark Theme' : 'White Theme';
-    toggleBtn.setAttribute('title', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
-    toggleBtn.setAttribute('aria-label', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
+    const titleText = isLight ? 'Switch to Dark Theme' : 'Switch to Light Theme';
+    toggleBtn.setAttribute('title', titleText);
+    toggleBtn.setAttribute('aria-label', titleText);
   };
 
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
