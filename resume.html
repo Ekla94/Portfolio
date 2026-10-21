@@ -13,7 +13,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <!-- Pre-initialization theme script to eliminate FOUC (supports URL param & localStorage) -->
   <script>
@@ -75,6 +75,23 @@
 
     .mono { font-family: var(--font-mono); }
     .accent { color: var(--accent); }
+
+    strong, b {
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .brand-khetinex,
+    strong.brand-khetinex {
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+
+    .item-sub strong {
+      font-weight: 800;
+      color: #ffffff;
+    }
 
     /* Top Navigation Bar */
     .resume-nav {
@@ -381,25 +398,80 @@
 
     /* Print Styles */
     @media print {
-      body { background: #fff !important; color: #111 !important; padding: 0 !important; }
+      @page {
+        margin: 0.8cm;
+        size: A4 portrait;
+      }
+      body {
+        background: #fff !important;
+        color: #111 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
       .resume-nav { display: none !important; }
-      .resume-container { max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+      .resume-container {
+        max-width: 100% !important;
+        margin: 0.5cm auto !important;
+        padding: 0 0.5cm !important;
+        width: 100% !important;
+      }
       .resume-paper {
-        background: #fff !important; border: none !important; padding: 1.5cm !important;
+        background: #fff !important;
+        border: 2px solid #111114 !important;
+        border-radius: 8px !important;
+        padding: 1.1cm 1.25cm !important;
         box-shadow: none !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
       }
       .candidate-name, .item-title, .bench-res-val, .bench-res-title { color: #000 !important; }
       .candidate-title, .section-title, .item-meta, .award-tag, .bench-res-tag, .bench-res-unit, .bench-res-sub { color: #111114 !important; }
-      .candidate-sub, .item-sub, .contact-item, .item-bullets li, .bench-res-desc { color: #333 !important; }
-      .section-title { border-bottom-color: #ddd !important; }
-      .header-top { border-bottom-color: #ddd !important; }
+      .candidate-sub, .item-sub, .contact-item, .item-bullets li, .bench-res-desc, .resume-section p { color: #1a1a1a !important; }
+      .section-title {
+        border-bottom: 1.5px solid #111114 !important;
+        padding-bottom: 0.35rem !important;
+        margin-bottom: 0.85rem !important;
+      }
+      .header-top {
+        border-bottom: 1.5px solid #111114 !important;
+        padding-bottom: 0.85rem !important;
+        margin-bottom: 1.25rem !important;
+      }
+      .resume-section {
+        margin-bottom: 1.4rem !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      .resume-item {
+        border-left: 2px solid #333 !important;
+        padding-left: 0.75rem !important;
+        margin-bottom: 1rem !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
       .item-bullets li::before { color: #111114 !important; }
       .skill-category, .benchmark-resume-card {
-        border-color: #ddd !important; background: #fafafa !important;
+        border: 1.2px solid #222 !important;
+        background: #fafafa !important;
+        border-radius: 6px !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        break-inside: avoid;
       }
-      .category-name { color: #111114 !important; }
+      .award-tag {
+        border: 1.2px solid #222 !important;
+        background: #f0f0f0 !important;
+        color: #000 !important;
+        font-weight: 700 !important;
+      }
+      .category-name { color: #111114 !important; font-weight: 700 !important; }
       .category-skills { color: #222 !important; }
-      .benchmarks-resume-grid { grid-template-columns: repeat(3, 1fr) !important; gap: .5cm !important; }
+      .benchmarks-resume-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.4cm !important; }
+      strong, b, .brand-khetinex, strong.brand-khetinex, .item-sub strong, .item-title strong {
+        color: #000000 !important;
+        font-weight: 850 !important;
+      }
       a { text-decoration: none; color: inherit; }
     }
 
@@ -625,6 +697,17 @@
     html[data-theme="light"] .resume-item {
       border-left-color: rgba(180, 150, 95, 0.35);
     }
+    html[data-theme="light"] strong,
+    html[data-theme="light"] b {
+      color: #0c0a09;
+      font-weight: 700;
+    }
+    html[data-theme="light"] .brand-khetinex,
+    html[data-theme="light"] strong.brand-khetinex,
+    html[data-theme="light"] .item-sub strong {
+      color: #0c0a09 !important;
+      font-weight: 800 !important;
+    }
   </style>
 </head>
 <body>
@@ -700,7 +783,7 @@
           <p class="item-sub">Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering (Spec. in AI &amp; ML) · Vellore, Tamil Nadu</p>
           <ul class="item-bullets">
             <li>Specialization: Deep Learning, Machine Learning, Data Structures &amp; Algorithms, Full-Stack System Design.</li>
-            <li>Achievements: Team Leader &amp; 1st Place Winner at HackGrid'26 with smart-agriculture platform <strong>KhetiNex</strong>.</li>
+            <li>Achievements: Team Leader &amp; 1st Place Winner at HackGrid'26 with smart-agriculture platform <strong class="brand-khetinex">KhetiNex</strong>.</li>
           </ul>
         </div>
 
@@ -798,7 +881,7 @@
             <span class="item-title">🏆 1st Place Winner — HackGrid'26</span>
             <span class="item-meta">VIT Vellore · 2026</span>
           </div>
-          <p class="item-sub">Team Leader for <strong>KhetiNex</strong> <span class="award-tag">Champion</span></p>
+          <p class="item-sub">Team Leader for <strong class="brand-khetinex">KhetiNex</strong> <span class="award-tag">Champion</span></p>
           <ul class="item-bullets">
             <li>Led a cross-functional engineering team through an intensive 36-hour sprint, developing an AI agricultural intelligence platform.</li>
             <li>Spearheaded system architecture, model integration, and delivered the winning live demonstration to panel of industry judges.</li>
@@ -822,7 +905,7 @@
         
         <div class="resume-item">
           <div class="item-header">
-            <span class="item-title"><strong>KhetiNex</strong> — Intelligent Agricultural Ecosystem</span>
+            <span class="item-title"><strong class="brand-khetinex">KhetiNex</strong> — Intelligent Agricultural Ecosystem</span>
             <span class="item-meta">React · Node.js · Python ML · MongoDB</span>
           </div>
           <p class="item-sub">Team Leader & Full-Stack Architect · <a href="https://fantasticfive-hg-26.vercel.app/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">fantasticfive-hg-26.vercel.app</a></p>

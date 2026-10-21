@@ -99,6 +99,18 @@ ul[role="list"] { list-style: none; }
 .mono { font-family: var(--font-mono); }
 .accent { color: var(--accent); }
 
+strong, b {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.brand-khetinex,
+strong.brand-khetinex {
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  letter-spacing: 0.01em;
+}
+
 /* ─── Skip Link ─────────────────────────────────────────────────── */
 .skip-link {
   position: fixed; top: -100%; left: 1rem; z-index: 9999;
@@ -2045,5 +2057,16 @@ html[data-theme="light"] .hud-dot {
 html[data-theme="light"] .about-portrait-wrapper {
   background: #faf4e6;
   border-color: rgba(180, 150, 95, 0.22);
+}
+
+html[data-theme="light"] strong,
+html[data-theme="light"] b {
+  color: #0c0a09;
+  font-weight: 700;
+}
+html[data-theme="light"] .brand-khetinex,
+html[data-theme="light"] strong.brand-khetinex {
+  color: #0c0a09 !important;
+  font-weight: 800 !important;
 }
 
