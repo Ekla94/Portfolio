@@ -17,16 +17,17 @@
 
   <style>
     :root {
-      --canvas: #000000;
-      --canvas-card: #0a0a0a;
-      --panel: #111111;
-      --panel-border: rgba(255, 90, 0, 0.18);
-      --accent: #ff5a00;
-      --accent-hover: #ff7728;
-      --accent-glow: rgba(255, 90, 0, 0.3);
-      --text-primary: #ffffff;
-      --text-secondary: #aaaaaa;
-      --text-muted: #666666;
+      --canvas: #08080a;
+      --canvas-card: #0d0d12;
+      --panel: #121217;
+      --panel-border: rgba(249, 115, 22, 0.18);
+      --accent: #f97316;
+      --accent-bright: #fb923c;
+      --accent-hover: #ea580c;
+      --accent-glow: rgba(249, 115, 22, 0.25);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
       --font-display: 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -49,9 +50,9 @@
     /* Top Navigation Bar */
     .resume-nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(8, 8, 10, 0.92);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 90, 0, 0.15);
+      border-bottom: 1px solid rgba(249, 115, 22, 0.15);
       padding: 1rem 2rem;
     }
     .resume-nav-inner {
@@ -67,15 +68,16 @@
 
     .nav-actions { display: flex; align-items: center; gap: 1rem; }
     .print-btn {
-      background: var(--accent); color: #000; font-weight: 700;
+      background: var(--accent); color: #08080a; font-weight: 700;
       border: none; border-radius: 6px; padding: .5rem 1.15rem;
       font-family: var(--font-display); font-size: .85rem;
       cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
-      transition: background .2s, box-shadow .2s;
+      transition: background .2s, box-shadow .2s, transform .15s;
     }
     .print-btn:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 0 16px var(--accent-glow);
+      background: var(--accent-bright);
+      box-shadow: 0 0 20px var(--accent-glow);
+      transform: translateY(-1px);
     }
 
     /* Resume Document Wrapper */
@@ -89,13 +91,13 @@
       border: 1px solid var(--panel-border);
       border-radius: 16px;
       padding: 3.5rem;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 90, 0, 0.05);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(249, 115, 22, 0.04);
     }
 
     /* Resume Header */
     .header-top {
       display: flex; justify-content: space-between; align-items: flex-start;
-      border-bottom: 1px solid rgba(255, 90, 0, 0.2);
+      border-bottom: 1px solid rgba(249, 115, 22, 0.2);
       padding-bottom: 2rem; margin-bottom: 2.5rem;
       flex-wrap: wrap; gap: 1.5rem;
     }
@@ -155,11 +157,72 @@
     }
     .item-bullets li {
       position: relative; padding-left: 1.25rem; margin-bottom: .45rem;
-      font-size: .92rem; color: #cccccc;
+      font-size: .92rem; color: #cbd5e1;
     }
     .item-bullets li::before {
       content: '▹'; position: absolute; left: 0;
       color: var(--accent); font-size: .85rem;
+    }
+
+    /* Benchmarks Section in Resume */
+    .benchmarks-resume-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .benchmark-resume-card {
+      background: rgba(249, 115, 22, 0.04);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      border-radius: 10px;
+      padding: 1.25rem 1.15rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .benchmark-resume-card:hover {
+      border-color: rgba(249, 115, 22, 0.45);
+      background: rgba(249, 115, 22, 0.07);
+    }
+    .bench-res-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.15rem;
+    }
+    .bench-res-val {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .bench-res-unit {
+      font-size: 0.95rem;
+      color: var(--accent-bright);
+      margin-left: 0.2rem;
+      font-weight: 600;
+    }
+    .bench-res-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-top: 0.25rem;
+    }
+    .bench-res-sub {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-bright);
+    }
+    .bench-res-desc {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-top: 0.2rem;
     }
 
     /* Skills Grid in Resume */
@@ -169,7 +232,7 @@
     }
     .skill-category {
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 90, 0, 0.12);
+      border: 1px solid rgba(249, 115, 22, 0.15);
       border-radius: 8px; padding: 1rem 1.25rem;
     }
     .category-name {
@@ -177,13 +240,13 @@
       color: var(--accent); margin-bottom: .45rem;
     }
     .category-skills {
-      font-family: var(--font-mono); font-size: .8rem; color: #bbb; line-height: 1.6;
+      font-family: var(--font-mono); font-size: .8rem; color: #cbd5e1; line-height: 1.6;
     }
 
     /* Badge */
     .award-tag {
       display: inline-block;
-      background: rgba(255, 90, 0, 0.15); border: 1px solid rgba(255, 90, 0, 0.4);
+      background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.35);
       color: var(--accent); font-size: .75rem; font-family: var(--font-mono);
       font-weight: 600; padding: .15rem .5rem; border-radius: 4px;
       margin-left: .5rem;
@@ -198,17 +261,18 @@
         background: #fff; border: none; padding: 1.5cm;
         box-shadow: none;
       }
-      .candidate-name, .item-title { color: #000 !important; }
-      .candidate-title, .section-title, .item-meta, .award-tag { color: #d44900 !important; }
-      .candidate-sub, .item-sub, .contact-item, .item-bullets li { color: #333 !important; }
+      .candidate-name, .item-title, .bench-res-val, .bench-res-title { color: #000 !important; }
+      .candidate-title, .section-title, .item-meta, .award-tag, .bench-res-tag, .bench-res-unit, .bench-res-sub { color: #d44900 !important; }
+      .candidate-sub, .item-sub, .contact-item, .item-bullets li, .bench-res-desc { color: #333 !important; }
       .section-title { border-bottom-color: #ddd !important; }
       .header-top { border-bottom-color: #ddd !important; }
       .item-bullets li::before { color: #d44900 !important; }
-      .skill-category {
+      .skill-category, .benchmark-resume-card {
         border-color: #ddd !important; background: #fafafa !important;
       }
       .category-name { color: #d44900 !important; }
       .category-skills { color: #222 !important; }
+      .benchmarks-resume-grid { grid-template-columns: repeat(3, 1fr) !important; gap: .5cm !important; }
       a { text-decoration: none; color: inherit; }
     }
 
@@ -220,9 +284,9 @@
       .resume-paper {
         padding: 1.5rem 1.15rem;
         border-radius: 14px;
-        background: #09090b;
-        border: 1px solid rgba(255, 90, 0, 0.32);
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 90, 0, 0.08);
+        background: #0d0d12;
+        border: 1px solid rgba(249, 115, 22, 0.28);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(249, 115, 22, 0.08);
       }
       .candidate-name { font-size: 1.85rem; }
       .candidate-title { font-size: .98rem; }
@@ -230,17 +294,19 @@
       .contact-details { text-align: left; margin-top: .5rem; }
       .contact-item { justify-content: flex-start; font-size: .78rem; }
       .resume-item {
-        border-left: 2px solid rgba(255, 90, 0, 0.4);
+        border-left: 2px solid rgba(249, 115, 22, 0.35);
         padding-left: .85rem;
         margin-bottom: 1.5rem;
       }
       .item-header { flex-direction: column; align-items: flex-start; gap: .2rem; }
       .item-title { font-size: 1.05rem; }
+      .benchmarks-resume-grid { grid-template-columns: 1fr; gap: .85rem; }
+      .benchmark-resume-card { padding: 1rem; border-left: 3px solid var(--accent); }
       .skills-block { grid-template-columns: 1fr; gap: .85rem; }
       .skill-category {
         padding: .9rem 1rem;
-        background: #0f0f13;
-        border: 1px solid rgba(255, 90, 0, 0.22);
+        background: #121217;
+        border: 1px solid rgba(249, 115, 22, 0.18);
         border-radius: 8px;
       }
     }
@@ -295,8 +361,8 @@
       <!-- Profile Summary -->
       <section class="resume-section">
         <h2 class="section-title">Professional Summary</h2>
-        <p style="color: #cccccc; font-size: .95rem; line-height: 1.7;">
-          Driven Computer Science undergraduate at VIT Vellore (Batch of 2026 – 2030) specializing in Artificial Intelligence and Machine Learning. Proven track record as a hackathon-winning Team Leader (HackGrid'26 Winner) with expertise architecting high-throughput full-stack web applications and deploying predictive ML pipelines. Anchored by exceptional academic discipline (94.997 %ile in JEE Main, 94.6% in 10th CBSE, 88.4% in 12th CBSE).
+        <p style="color: #cbd5e1; font-size: .95rem; line-height: 1.7;">
+          Driven Computer Science undergraduate at VIT Vellore (Batch of 2026 – 2030) specializing in Artificial Intelligence and Machine Learning. Proven track record as a hackathon-winning Team Leader (HackGrid'26 Winner) with expertise architecting high-throughput full-stack web applications and deploying predictive ML pipelines, anchored by strong foundational problem-solving and competitive academic benchmarks.
         </p>
       </section>
 
@@ -317,16 +383,29 @@
           </ul>
         </div>
 
+        <!-- Kamal Model School, Mohan Garden -->
+        <div class="resume-item">
+          <div class="item-header">
+            <span class="item-title">Kamal Model School, Mohan Garden, New Delhi</span>
+            <span class="item-meta">CBSE</span>
+          </div>
+          <p class="item-sub">Senior Secondary · Science & Mathematics (PCM)</p>
+          <ul class="item-bullets">
+            <li>Established CBSE senior secondary institution recognized for strong STEM education, computer laboratories, and academic foundations.</li>
+            <li>Completed Class 12th Senior Secondary curriculum with focus on physics, chemistry, mathematics, and computer sciences.</li>
+          </ul>
+        </div>
+
         <!-- Father Agnel School, Vaishali -->
         <div class="resume-item">
           <div class="item-header">
             <span class="item-title">Father Agnel School, Vaishali, Ghaziabad</span>
             <span class="item-meta">CBSE</span>
           </div>
+          <p class="item-sub">Secondary School Education</p>
           <ul class="item-bullets">
-            <li><strong>CBSE Boards: 88.4%</strong></li>
-            <li><strong>JEE Main: 94.997 Percentile</strong> (Qualified nationwide competitive examination).</li>
-            <li>Strong foundation in advanced calculus, mechanics, electrodynamics, and algorithmic problem-solving.</li>
+            <li>Renowned Agnelite institution in Ghaziabad recognized for rigorous STEM education, high-order science and mathematics foundations, and values-driven pedagogy.</li>
+            <li>Completed Class 10th CBSE secondary education with scholastic distinction in science and analytical disciplines.</li>
           </ul>
         </div>
 
@@ -336,9 +415,9 @@
             <span class="item-title">JKG International School, Indirapuram, Ghaziabad</span>
             <span class="item-meta">CBSE</span>
           </div>
+          <p class="item-sub">Formative Schooling</p>
           <ul class="item-bullets">
-            <li><strong>CBSE Boards: 94.6%</strong></li>
-            <li>Recognized for academic distinction in Mathematics and Science; active participant in regional STEM Olympiads.</li>
+            <li>Prominent institution opposite Swarn Jayanti Park, Indirapuram, that formed an integral part of the early academic journey, cultivating disciplined study habits and curiosity in science.</li>
           </ul>
         </div>
 
@@ -348,9 +427,49 @@
             <span class="item-title">N.K. Bagrodia Public School, Dwarka, New Delhi</span>
             <span class="item-meta">CBSE</span>
           </div>
+          <p class="item-sub">Primary & Middle School Foundations</p>
           <ul class="item-bullets">
-            <li>Established strong foundational competencies in mathematics, scientific reasoning, and analytical thinking.</li>
+            <li>Premier educational institution in Sector 4, Dwarka, known for cultivating scientific temperament, innovation labs, and holistic intellectual curiosity.</li>
           </ul>
+        </div>
+      </section>
+
+      <!-- Academic Distinctions & Competitive Benchmarks -->
+      <section class="resume-section">
+        <h2 class="section-title">Academic Distinctions & Competitive Benchmarks</h2>
+        <div class="benchmarks-resume-grid">
+          <!-- JEE Main -->
+          <div class="benchmark-resume-card">
+            <span class="bench-res-tag">National Competitive Exam</span>
+            <div class="bench-res-val">94.997<span class="bench-res-unit">%ile</span></div>
+            <div class="bench-res-title">JEE Main Examination</div>
+            <div class="bench-res-sub">Nationwide Qualified</div>
+            <p class="bench-res-desc">
+              Demonstrated advanced analytical precision, mathematical reasoning, and high-speed problem solving in India's premier engineering entrance test.
+            </p>
+          </div>
+
+          <!-- CBSE Class X -->
+          <div class="benchmark-resume-card">
+            <span class="bench-res-tag">CBSE Secondary Boards</span>
+            <div class="bench-res-val">94.6<span class="bench-res-unit">%</span></div>
+            <div class="bench-res-title">Class X Board Examination</div>
+            <div class="bench-res-sub">Father Agnel School, Vaishali</div>
+            <p class="bench-res-desc">
+              Achieved high scholastic distinction across all core academic disciplines, with peak scores in Science and Mathematics.
+            </p>
+          </div>
+
+          <!-- CBSE Class XII -->
+          <div class="benchmark-resume-card">
+            <span class="bench-res-tag">CBSE Senior Secondary</span>
+            <div class="bench-res-val">88.4<span class="bench-res-unit">%</span></div>
+            <div class="bench-res-title">Class XII Board Examination</div>
+            <div class="bench-res-sub">Kamal Model School, Mohan Garden</div>
+            <p class="bench-res-desc">
+              Graduated Senior Secondary in Science & Mathematics stream (PCM) with distinction, emphasizing STEM fundamentals.
+            </p>
+          </div>
         </div>
       </section>
 

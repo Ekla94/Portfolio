@@ -165,13 +165,12 @@ const prefersReducedMotion = () =>
     radius: 170
   };
 
-  // Node Color Schemes (neon accents fading into dark background)
-  // Palette: electric neon orange (primary), cyber electric cyan, deep purple/violet, warm amber
+  // Node Color Schemes (Refined professional solar amber palette)
   const COLOR_PALETTES = [
-    { r: 255, g: 90,  b: 0   }, // Electric neon orange
-    { r: 0,   g: 210, b: 255 }, // Electric cyan-blue
-    { r: 168, g: 85,  b: 247 }, // Deep cyber purple
-    { r: 255, g: 154, b: 0   }  // Vibrant amber
+    { r: 249, g: 115, b: 22  }, // Refined Solar Amber (#f97316)
+    { r: 251, g: 146, b: 60  }, // Warm Light Amber (#fb923c)
+    { r: 245, g: 158, b: 11  }, // Warm Champagne Gold (#f59e0b)
+    { r: 56,  g: 189, b: 248 }  // Soft Technical Sky Blue (#38bdf8)
   ];
 
   class Node {
