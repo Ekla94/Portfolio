@@ -165,12 +165,19 @@ const prefersReducedMotion = () =>
     radius: 170
   };
 
-  // Node Color Schemes (Refined professional solar amber palette)
-  const COLOR_PALETTES = [
-    { r: 249, g: 115, b: 22  }, // Refined Solar Amber (#f97316)
-    { r: 251, g: 146, b: 60  }, // Warm Light Amber (#fb923c)
-    { r: 245, g: 158, b: 11  }, // Warm Champagne Gold (#f59e0b)
-    { r: 56,  g: 189, b: 248 }  // Soft Technical Sky Blue (#38bdf8)
+  // Node Color Schemes (Dynamic Black & Off-White luxury monochrome)
+  const PALETTES_DARK = [
+    { r: 255, g: 255, b: 255 }, // Luminous Pure White
+    { r: 244, g: 244, b: 245 }, // Platinum Zinc-100
+    { r: 212, g: 212, b: 216 }, // Silver Zinc-300
+    { r: 161, g: 161, b: 170 }  // Muted Zinc-400
+  ];
+
+  const PALETTES_LIGHT = [
+    { r: 24,  g: 24,  b: 27  }, // Deep Zinc-900 Charcoal
+    { r: 63,  g: 63,  b: 70  }, // Zinc-700 Graphite
+    { r: 113, g: 113, b: 122 }, // Zinc-500 Slate
+    { r: 161, g: 161, b: 170 }  // Zinc-400 Mist
   ];
 
   class Node {
@@ -194,17 +201,8 @@ const prefersReducedMotion = () =>
       this.vx = Math.cos(angle) * speed;
       this.vy = Math.sin(angle) * speed;
 
-      // Color selection (balanced neon distribution)
-      const randType = Math.random();
-      if (randType < 0.52) {
-        this.color = COLOR_PALETTES[0]; // Neon orange
-      } else if (randType < 0.76) {
-        this.color = COLOR_PALETTES[1]; // Electric blue
-      } else if (randType < 0.92) {
-        this.color = COLOR_PALETTES[2]; // Deep purple
-      } else {
-        this.color = COLOR_PALETTES[3]; // Amber
-      }
+      // Color selection (balanced monochrome distribution)
+      this.paletteIndex = Math.floor(Math.random() * 4);
 
       this.pulsePhase = Math.random() * Math.PI * 2;
       this.pulseSpeed = 0.02 + Math.random() * 0.03;
@@ -213,6 +211,11 @@ const prefersReducedMotion = () =>
       this.dispY = 0;
       this.renderX = this.x;
       this.renderY = this.baseY;
+    }
+
+    getColor() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      return isLight ? PALETTES_LIGHT[this.paletteIndex] : PALETTES_DARK[this.paletteIndex];
     }
 
     update(w, h, scrollY) {
@@ -265,7 +268,7 @@ const prefersReducedMotion = () =>
     draw(ctx) {
       const pulse = 0.82 + 0.18 * Math.sin(this.pulsePhase);
       const alpha = (0.35 + 0.55 * (this.z / 1.15)) * pulse;
-      const c = this.color;
+      const c = this.getColor();
 
       // Core glowing node
       ctx.beginPath();
@@ -350,6 +353,7 @@ const prefersReducedMotion = () =>
 
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
+      const ca = a.getColor();
       for (let j = i + 1; j < nodes.length; j++) {
         const b = nodes[j];
         const dx = a.renderX - b.renderX;
@@ -363,13 +367,14 @@ const prefersReducedMotion = () =>
           const alpha = proximity * 0.35 * depthFactor;
 
           if (alpha > 0.015) {
+            const cb = b.getColor();
             ctx.beginPath();
             ctx.moveTo(a.renderX, a.renderY);
             ctx.lineTo(b.renderX, b.renderY);
 
-            const mr = Math.round((a.color.r + b.color.r) * 0.5);
-            const mg = Math.round((a.color.g + b.color.g) * 0.5);
-            const mb = Math.round((a.color.b + b.color.b) * 0.5);
+            const mr = Math.round((ca.r + cb.r) * 0.5);
+            const mg = Math.round((ca.g + cb.g) * 0.5);
+            const mb = Math.round((ca.b + cb.b) * 0.5);
 
             ctx.strokeStyle = `rgba(${mr}, ${mg}, ${mb}, ${alpha})`;
             ctx.stroke();
@@ -389,7 +394,7 @@ const prefersReducedMotion = () =>
           ctx.beginPath();
           ctx.moveTo(a.renderX, a.renderY);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(${a.color.r}, ${a.color.g}, ${a.color.b}, ${mAlpha})`;
+          ctx.strokeStyle = `rgba(${ca.r}, ${ca.g}, ${ca.b}, ${mAlpha})`;
           ctx.stroke();
         }
       }
@@ -662,8 +667,9 @@ const prefersReducedMotion = () =>
     btn.setAttribute('aria-pressed', 'true');
     const section = btn.closest('.interactive-moment');
     if (section) {
-      section.style.borderColor = 'rgba(255,90,0,0.55)';
-      section.style.boxShadow   = '0 0 50px rgba(255,90,0,0.18)';
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      section.style.borderColor = isLight ? 'rgba(0, 0, 0, 0.35)' : 'rgba(255, 255, 255, 0.45)';
+      section.style.boxShadow   = isLight ? '0 0 45px rgba(0, 0, 0, 0.12)' : '0 0 50px rgba(255, 255, 255, 0.16)';
     }
   };
 
@@ -725,3 +731,34 @@ const prefersReducedMotion = () =>
 document.addEventListener('visibilitychange', () => {
   document.body.classList.toggle('paused', document.hidden);
 });
+
+/* ─── 14. White / Dark Theme Controller (Reference Image Styling) ─ */
+(function initThemeToggle() {
+  const toggleBtn = $('#theme-toggle');
+  if (!toggleBtn) return;
+
+  const label = toggleBtn.querySelector('.theme-toggle-label');
+  const syncUI = (theme) => {
+    const isLight = theme === 'light';
+    if (label) label.textContent = isLight ? 'Dark Theme' : 'White Theme';
+    toggleBtn.setAttribute('title', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
+    toggleBtn.setAttribute('aria-label', isLight ? 'Switch to Dark Theme' : 'Switch to White Theme');
+  };
+
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  syncUI(currentTheme);
+
+  toggleBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const nextTheme = isLight ? 'dark' : 'light';
+    if (nextTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+    try {
+      localStorage.setItem('portfolio-theme', nextTheme);
+    } catch (e) {}
+    syncUI(nextTheme);
+  });
+})();
