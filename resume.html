@@ -168,61 +168,61 @@
     .benchmarks-resume-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.15rem;
+      gap: 0.85rem;
       margin-bottom: 0.5rem;
     }
     .benchmark-resume-card {
-      background: rgba(249, 115, 22, 0.04);
-      border: 1px solid rgba(249, 115, 22, 0.2);
-      border-radius: 10px;
-      padding: 1.25rem 1.15rem;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.2rem;
       transition: border-color 0.2s, background 0.2s;
     }
     .benchmark-resume-card:hover {
-      border-color: rgba(249, 115, 22, 0.45);
-      background: rgba(249, 115, 22, 0.07);
+      border-color: rgba(249, 115, 22, 0.35);
+      background: rgba(249, 115, 22, 0.03);
     }
     .bench-res-tag {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      margin-bottom: 0.15rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 0.1rem;
     }
     .bench-res-val {
       font-family: var(--font-display);
-      font-size: 1.85rem;
-      font-weight: 700;
+      font-size: 1.35rem;
+      font-weight: 600;
       color: #ffffff;
-      line-height: 1;
+      line-height: 1.1;
     }
     .bench-res-unit {
-      font-size: 0.95rem;
-      color: var(--accent-bright);
-      margin-left: 0.2rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--accent);
+      margin-left: 0.15rem;
+      font-weight: 500;
     }
     .bench-res-title {
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: #ffffff;
-      margin-top: 0.25rem;
+      margin-top: 0.15rem;
     }
     .bench-res-sub {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--accent-bright);
+      font-size: 0.72rem;
+      color: var(--text-muted);
     }
     .bench-res-desc {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       color: #94a3b8;
-      line-height: 1.5;
-      margin-top: 0.2rem;
+      line-height: 1.45;
+      margin-top: 0.15rem;
     }
 
     /* Skills Grid in Resume */
@@ -438,17 +438,6 @@
       <section class="resume-section">
         <h2 class="section-title">Academic Distinctions & Competitive Benchmarks</h2>
         <div class="benchmarks-resume-grid">
-          <!-- JEE Main -->
-          <div class="benchmark-resume-card">
-            <span class="bench-res-tag">National Competitive Exam</span>
-            <div class="bench-res-val">94.997<span class="bench-res-unit">%ile</span></div>
-            <div class="bench-res-title">JEE Main Examination</div>
-            <div class="bench-res-sub">Nationwide Qualified</div>
-            <p class="bench-res-desc">
-              Demonstrated advanced analytical precision, mathematical reasoning, and high-speed problem solving in India's premier engineering entrance test.
-            </p>
-          </div>
-
           <!-- CBSE Class X -->
           <div class="benchmark-resume-card">
             <span class="bench-res-tag">CBSE Secondary Boards</span>
@@ -456,7 +445,7 @@
             <div class="bench-res-title">Class X Board Examination</div>
             <div class="bench-res-sub">Father Agnel School, Vaishali</div>
             <p class="bench-res-desc">
-              Achieved high scholastic distinction across all core academic disciplines, with peak scores in Science and Mathematics.
+              Achieved scholastic distinction across core academic disciplines, with high scores in Science and Mathematics.
             </p>
           </div>
 
@@ -467,7 +456,18 @@
             <div class="bench-res-title">Class XII Board Examination</div>
             <div class="bench-res-sub">Kamal Model School, Mohan Garden</div>
             <p class="bench-res-desc">
-              Graduated Senior Secondary in Science & Mathematics stream (PCM) with distinction, emphasizing STEM fundamentals.
+              Graduated Senior Secondary in Science & Mathematics stream (PCM) with foundational STEM focus.
+            </p>
+          </div>
+
+          <!-- JEE Main -->
+          <div class="benchmark-resume-card">
+            <span class="bench-res-tag">National Competitive Exam</span>
+            <div class="bench-res-val">94.997<span class="bench-res-unit">%ile</span></div>
+            <div class="bench-res-title">JEE Main Examination</div>
+            <div class="bench-res-sub">Engineering Entrance Examination</div>
+            <p class="bench-res-desc">
+              Nationwide engineering entrance examination testing advanced problem-solving speed and analytical precision.
             </p>
           </div>
         </div>
