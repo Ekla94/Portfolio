@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <linearGradient id="esOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff7700" />
-      <stop offset="100%" stop-color="#ff3300" />
+    <linearGradient id="esFaviconGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf9ed" />
+      <stop offset="50%" stop-color="#faebd0" />
+      <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
   </defs>
-  <rect width="100" height="100" rx="20" fill="#050505"/>
-  <polygon points="50,10 86,28 86,72 50,90 14,72 14,28" stroke="url(#esOrange)" stroke-width="3" fill="#111111"/>
-  <path d="M28 34 H45 V39 H35 V47 H43 V52 H35 V61 H45 V66 H28 Z" fill="url(#esOrange)"/>
-  <path d="M54 34 H71 V44 H61 V47 H71 V66 H54 V56 H64 V53 H54 Z" fill="url(#esOrange)"/>
+  <rect width="100" height="100" rx="20" fill="#09090b"/>
+  <polygon points="50,10 86,28 86,72 50,90 14,72 14,28" stroke="url(#esFaviconGold)" stroke-width="3" fill="#131317"/>
+  <path d="M28 34 H45 V39 H35 V47 H43 V52 H35 V61 H45 V66 H28 Z" fill="url(#esFaviconGold)"/>
+  <path d="M54 34 H71 V44 H61 V47 H71 V66 H54 V56 H64 V53 H54 Z" fill="url(#esFaviconGold)"/>
 </svg>

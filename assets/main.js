@@ -165,19 +165,23 @@ const prefersReducedMotion = () =>
     radius: 170
   };
 
-  // Node Color Schemes (Dynamic Black & Off-White luxury monochrome)
+  // Node Color Schemes (Warm Ivory Off-White & Harmonic Colors)
   const PALETTES_DARK = [
-    { r: 255, g: 255, b: 255 }, // Luminous Pure White
-    { r: 244, g: 244, b: 245 }, // Platinum Zinc-100
-    { r: 212, g: 212, b: 216 }, // Silver Zinc-300
-    { r: 161, g: 161, b: 170 }  // Muted Zinc-400
+    { r: 250, g: 244, b: 225 }, // Warm Ivory Off-White (Soft Yellow Undertone)
+    { r: 245, g: 158, b: 11  }, // Solar Amber / Gold
+    { r: 16,  g: 185, b: 129 }, // Emerald Jade
+    { r: 56,  g: 189, b: 248 }, // Electric Sky Cyan
+    { r: 168, g: 85,  b: 247 }, // Cosmic Violet
+    { r: 251, g: 191, b: 36  }  // Champagne Gold
   ];
 
   const PALETTES_LIGHT = [
-    { r: 24,  g: 24,  b: 27  }, // Deep Zinc-900 Charcoal
-    { r: 63,  g: 63,  b: 70  }, // Zinc-700 Graphite
-    { r: 113, g: 113, b: 122 }, // Zinc-500 Slate
-    { r: 161, g: 161, b: 170 }  // Zinc-400 Mist
+    { r: 38,  g: 34,  b: 30  }, // Deep Warm Espresso
+    { r: 217, g: 119, b: 6   }, // Burnished Gold / Amber
+    { r: 5,   g: 150, b: 105 }, // Deep Emerald
+    { r: 2,   g: 132, b: 199 }, // Azure Cyan
+    { r: 124, g: 58,  b: 237 }, // Deep Violet
+    { r: 120, g: 113, b: 108 }  // Warm Stone Umber
   ];
 
   class Node {
@@ -201,8 +205,8 @@ const prefersReducedMotion = () =>
       this.vx = Math.cos(angle) * speed;
       this.vy = Math.sin(angle) * speed;
 
-      // Color selection (balanced monochrome distribution)
-      this.paletteIndex = Math.floor(Math.random() * 4);
+      // Color selection (balanced distribution across harmonic colors)
+      this.paletteIndex = Math.floor(Math.random() * PALETTES_DARK.length);
 
       this.pulsePhase = Math.random() * Math.PI * 2;
       this.pulseSpeed = 0.02 + Math.random() * 0.03;

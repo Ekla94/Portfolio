@@ -32,17 +32,25 @@
   <style>
     :root {
       --canvas: #09090b;
-      --canvas-card: #111114;
-      --panel: #18181b;
-      --panel-border: rgba(255, 255, 255, 0.12);
-      --accent: #f5f5f7;
-      --accent-bright: #ffffff;
-      --accent-hover: #e4e4e7;
-      --accent-inverse: #09090b;
-      --accent-glow: rgba(255, 255, 255, 0.18);
-      --text-primary: #faf8f5;
-      --text-secondary: #a1a1aa;
-      --text-muted: #71717a;
+      --canvas-card: #131317;
+      --panel: #16161b;
+      --panel-border: rgba(250, 244, 225, 0.12);
+      --accent: #faf4e1;
+      --accent-bright: #fdf9ed;
+      --accent-hover: #f3e7c4;
+      --accent-inverse: #14120e;
+      --accent-glow: rgba(250, 244, 225, 0.16);
+
+      --color-gold: #f59e0b;
+      --color-gold-bright: #fbbf24;
+      --color-cyan: #06b6d4;
+      --color-cyan-bright: #38bdf8;
+      --color-violet: #a855f7;
+      --color-violet-bright: #c084fc;
+
+      --text-primary: #faf4e1;
+      --text-secondary: #beb6a4;
+      --text-muted: #827c6f;
       --font-display: 'Space Grotesk', sans-serif;
       --font-body: 'Inter', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -66,9 +74,9 @@
     /* Top Navigation Bar */
     .resume-nav {
       position: sticky; top: 0; z-index: 100;
-      background: rgba(9, 9, 11, 0.92);
+      background: rgba(9, 9, 11, 0.94);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(250, 244, 225, 0.1);
       padding: 0.85rem 2rem;
       transition: background 0.3s ease, border-color 0.3s ease;
     }
@@ -81,15 +89,15 @@
       color: var(--text-secondary); font-size: .88rem; font-weight: 500;
       text-decoration: none; transition: color .2s, transform .2s;
     }
-    .back-btn:hover { color: #ffffff; transform: translateX(-3px); }
+    .back-btn:hover { color: var(--color-gold-bright); transform: translateX(-3px); }
 
     .nav-actions { display: flex; align-items: center; gap: 0.85rem; }
 
     /* Theme Toggle Button (Reference Image Styling) */
     .theme-toggle-btn {
-      background: #ffffff;
-      color: #09090b;
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: var(--accent-bright);
+      color: var(--accent-inverse);
+      border: 1px solid rgba(250, 244, 225, 0.45);
       border-radius: 9999px;
       padding: 0.44rem 1.05rem;
       font-family: var(--font-display);
@@ -100,15 +108,15 @@
       gap: 0.48rem;
       cursor: pointer;
       transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s, background 0.2s, color 0.2s, border-color 0.2s;
-      box-shadow: 0 4px 18px rgba(255, 255, 255, 0.16);
+      box-shadow: 0 4px 18px rgba(250, 244, 225, 0.16);
       text-decoration: none;
       line-height: 1;
       white-space: nowrap;
     }
     .theme-toggle-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(255, 255, 255, 0.26);
-      background: #f4f4f5;
+      box-shadow: 0 6px 24px rgba(250, 244, 225, 0.28);
+      background: var(--accent-hover);
     }
     .theme-toggle-icon {
       display: inline-flex;
@@ -120,28 +128,28 @@
     .theme-toggle-btn .icon-sun  { display: inline-block; }
 
     .print-btn {
-      background: #ffffff; color: #09090b; font-weight: 700;
-      border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 9999px; padding: .44rem 1.15rem;
+      background: var(--accent-bright); color: var(--accent-inverse); font-weight: 700;
+      border: 1px solid rgba(250, 244, 225, 0.45); border-radius: 9999px; padding: .44rem 1.15rem;
       font-family: var(--font-display); font-size: .82rem;
       cursor: pointer; display: inline-flex; align-items: center; gap: .5rem;
       transition: background .2s, box-shadow .2s, transform .15s;
-      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 4px 14px rgba(250, 244, 225, 0.12);
     }
     .print-btn:hover {
-      background: #f4f4f5;
-      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.22);
+      background: var(--accent-hover);
+      box-shadow: 0 6px 20px rgba(250, 244, 225, 0.24);
       transform: translateY(-1px);
     }
 
     /* In Light / White Theme Mode */
     html[data-theme="light"] .theme-toggle-btn {
-      background: #111114;
-      color: #faf8f5;
+      background: #1c1917;
+      color: #faf4e6;
       border: 1px solid rgba(0, 0, 0, 0.2);
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
     }
     html[data-theme="light"] .theme-toggle-btn:hover {
-      background: #27272a;
+      background: #292524;
       box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
     }
     html[data-theme="light"] .theme-toggle-btn .icon-sun  { display: none; }
@@ -189,7 +197,7 @@
       display: inline-flex; align-items: center; gap: .5rem; justify-content: flex-end;
       transition: color .2s;
     }
-    .contact-item:hover { color: #ffffff; }
+    .contact-item:hover { color: var(--color-gold-bright); }
 
     /* Sections */
     .resume-section { margin-bottom: 2.75rem; }
@@ -198,7 +206,7 @@
     .section-title {
       font-family: var(--font-display); font-size: 1.25rem; font-weight: 700;
       color: var(--accent-bright); letter-spacing: -0.01em;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(250, 244, 225, 0.1);
       padding-bottom: .5rem; margin-bottom: 1.25rem;
       display: flex; align-items: center; gap: .6rem;
     }
@@ -212,7 +220,7 @@
       margin-bottom: .25rem; flex-wrap: wrap; gap: .5rem;
     }
     .item-title {
-      font-size: 1.05rem; font-weight: 600; color: #ffffff;
+      font-size: 1.05rem; font-weight: 600; color: var(--text-primary);
     }
     .item-meta {
       font-family: var(--font-mono); font-size: .82rem; color: var(--text-secondary);
@@ -225,11 +233,11 @@
     }
     .item-bullets li {
       position: relative; padding-left: 1.25rem; margin-bottom: .45rem;
-      font-size: .92rem; color: #d4d4d8;
+      font-size: .92rem; color: #dfd8c8;
     }
     .item-bullets li::before {
       content: '▹'; position: absolute; left: 0;
-      color: #ffffff; font-size: .85rem;
+      color: var(--color-gold-bright); font-size: .85rem;
     }
 
     /* Benchmarks Section in Resume */
@@ -240,20 +248,57 @@
       margin-bottom: 0.5rem;
     }
     .benchmark-resume-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(250, 244, 225, 0.02);
+      border: 1px solid rgba(250, 244, 225, 0.1);
       border-radius: 8px;
       padding: 0.85rem 1rem;
       position: relative;
       display: flex;
       flex-direction: column;
       gap: 0.2rem;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
     .benchmark-resume-card:hover {
-      border-color: rgba(255, 255, 255, 0.35);
-      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(250, 244, 225, 0.35);
+      background: rgba(250, 244, 225, 0.05);
     }
+
+    .benchmark-resume-card--gold {
+      border-color: rgba(245, 158, 11, 0.28);
+    }
+    .benchmark-resume-card--gold:hover {
+      border-color: rgba(245, 158, 11, 0.55);
+      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.1);
+    }
+    .benchmark-resume-card--gold .bench-res-val,
+    .benchmark-resume-card--gold .bench-res-tag {
+      color: var(--color-gold-bright);
+    }
+
+    .benchmark-resume-card--cyan {
+      border-color: rgba(6, 182, 212, 0.28);
+    }
+    .benchmark-resume-card--cyan:hover {
+      border-color: rgba(6, 182, 212, 0.55);
+      box-shadow: 0 4px 18px rgba(6, 182, 212, 0.1);
+    }
+    .benchmark-resume-card--cyan .bench-res-val,
+    .benchmark-resume-card--cyan .bench-res-tag {
+      color: var(--color-cyan-bright);
+    }
+
+    .benchmark-resume-card--violet {
+      border-color: rgba(168, 85, 247, 0.28);
+    }
+    .benchmark-resume-card--violet:hover {
+      border-color: rgba(168, 85, 247, 0.55);
+      box-shadow: 0 4px 18px rgba(168, 85, 247, 0.1);
+    }
+    .benchmark-resume-card--violet .bench-res-val,
+    .benchmark-resume-card--violet .bench-res-tag {
+      color: var(--color-violet-bright);
+    }
+
     .bench-res-tag {
       font-family: var(--font-mono);
       font-size: 0.68rem;
@@ -266,7 +311,7 @@
       font-family: var(--font-display);
       font-size: 1.35rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-primary);
       line-height: 1.1;
     }
     .bench-res-unit {
@@ -278,7 +323,7 @@
     .bench-res-title {
       font-size: 0.88rem;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--text-primary);
       margin-top: 0.15rem;
     }
     .bench-res-sub {
@@ -288,7 +333,7 @@
     }
     .bench-res-desc {
       font-size: 0.78rem;
-      color: #a1a1aa;
+      color: #beb6a4;
       line-height: 1.45;
       margin-top: 0.15rem;
     }
@@ -299,23 +344,23 @@
       gap: 1.25rem;
     }
     .skill-category {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(250, 244, 225, 0.02);
+      border: 1px solid rgba(250, 244, 225, 0.1);
       border-radius: 8px; padding: 1rem 1.25rem;
     }
     .category-name {
       font-family: var(--font-display); font-size: .88rem; font-weight: 600;
-      color: #ffffff; margin-bottom: .45rem;
+      color: var(--text-primary); margin-bottom: .45rem;
     }
     .category-skills {
-      font-family: var(--font-mono); font-size: .8rem; color: #d4d4d8; line-height: 1.6;
+      font-family: var(--font-mono); font-size: .8rem; color: #dfd8c8; line-height: 1.6;
     }
 
     /* Badge */
     .award-tag {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.28);
-      color: #ffffff; font-size: .75rem; font-family: var(--font-mono);
+      background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35);
+      color: var(--color-gold-bright); font-size: .75rem; font-family: var(--font-mono);
       font-weight: 600; padding: .15rem .5rem; border-radius: 4px;
       margin-left: .5rem;
     }
@@ -372,8 +417,10 @@
       }
       .item-header { flex-direction: column; align-items: flex-start; gap: .2rem; }
       .item-title { font-size: 1.05rem; }
-      .benchmarks-resume-grid { grid-template-columns: 1fr; gap: .85rem; }
-      .benchmark-resume-card { padding: 1rem; border-left: 3px solid #ffffff; }
+      .benchmark-resume-card { padding: 1rem; border-left: 3px solid rgba(250, 244, 225, 0.4); }
+      .benchmark-resume-card--gold { border-left-color: var(--color-gold-bright) !important; }
+      .benchmark-resume-card--cyan { border-left-color: var(--color-cyan-bright) !important; }
+      .benchmark-resume-card--violet { border-left-color: var(--color-violet-bright) !important; }
       .skills-block { grid-template-columns: 1fr; gap: .85rem; }
       .skill-category {
         padding: .9rem 1rem;
@@ -385,61 +432,60 @@
 
     /* ─── White Theme / Light Mode Overrides for Resume ───────────── */
     html[data-theme="light"] {
-      --canvas: #faf8f5;
-      --canvas-card: #ffffff;
-      --panel: #ffffff;
-      --panel-border: rgba(0, 0, 0, 0.09);
-      --accent: #111114;
-      --accent-bright: #000000;
-      --accent-hover: #27272a;
-      --accent-inverse: #faf8f5;
-      --accent-glow: rgba(0, 0, 0, 0.08);
-      --text-primary: #111114;
-      --text-secondary: #52525b;
-      --text-muted: #71717a;
+      --canvas: #faf4e6;
+      --canvas-card: #fffdf7;
+      --panel: #fffdf7;
+      --panel-border: rgba(180, 150, 95, 0.2);
+      --accent: #1c1917;
+      --accent-bright: #14120e;
+      --accent-hover: #292524;
+      --accent-inverse: #faf4e6;
+      --accent-glow: rgba(180, 150, 95, 0.12);
+      --text-primary: #1c1917;
+      --text-secondary: #57534e;
+      --text-muted: #78716c;
     }
     html[data-theme="light"] body {
       background: var(--canvas);
       color: var(--text-primary);
     }
     html[data-theme="light"] .resume-nav {
-      background: rgba(250, 248, 245, 0.94);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      background: rgba(250, 244, 230, 0.94);
+      border-bottom: 1px solid rgba(180, 150, 95, 0.2);
     }
     html[data-theme="light"] .back-btn {
       color: var(--text-secondary);
     }
     html[data-theme="light"] .back-btn:hover {
-      color: #000000;
+      color: #b45309;
     }
     html[data-theme="light"] .print-btn {
-      background: #111114;
-      color: #ffffff;
+      background: #1c1917;
+      color: #faf4e6;
       border-color: rgba(0, 0, 0, 0.2);
     }
     html[data-theme="light"] .print-btn:hover {
-      background: #27272a;
+      background: #292524;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
     }
     html[data-theme="light"] .resume-paper {
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.09);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      background: #fffdf7;
+      border: 1px solid rgba(180, 150, 95, 0.2);
+      box-shadow: 0 10px 40px rgba(180, 150, 95, 0.08);
     }
     html[data-theme="light"] .candidate-name,
     html[data-theme="light"] .item-title,
-    html[data-theme="light"] .bench-res-val,
     html[data-theme="light"] .bench-res-title {
-      color: #111114;
+      color: #1c1917;
     }
     html[data-theme="light"] .candidate-title,
     html[data-theme="light"] .section-title,
     html[data-theme="light"] .category-name {
-      color: #111114;
+      color: #1c1917;
     }
     html[data-theme="light"] .item-meta,
     html[data-theme="light"] .bench-res-unit {
-      color: #52525b;
+      color: #57534e;
     }
     html[data-theme="light"] .candidate-sub,
     html[data-theme="light"] .item-sub,
@@ -447,42 +493,64 @@
     html[data-theme="light"] .contact-item,
     html[data-theme="light"] .category-skills,
     html[data-theme="light"] .resume-section p {
-      color: #52525b !important;
+      color: #57534e !important;
     }
     html[data-theme="light"] .contact-item:hover {
-      color: #111114;
+      color: #1c1917;
     }
     html[data-theme="light"] .item-bullets li {
-      color: #3f3f46;
+      color: #44403c;
     }
     html[data-theme="light"] .item-bullets li::before {
-      color: #111114;
+      color: #1c1917;
     }
     html[data-theme="light"] .benchmark-resume-card,
     html[data-theme="light"] .skill-category {
-      background: #faf8f5;
-      border-color: rgba(0, 0, 0, 0.09);
+      background: #fffdf7;
+      border-color: rgba(180, 150, 95, 0.2);
     }
     html[data-theme="light"] .benchmark-resume-card:hover {
-      background: #f4f1ea;
-      border-color: rgba(0, 0, 0, 0.22);
+      background: #faf4e6;
+      border-color: rgba(180, 150, 95, 0.4);
     }
+
+    html[data-theme="light"] .benchmark-resume-card--gold .bench-res-val,
+    html[data-theme="light"] .benchmark-resume-card--gold .bench-res-tag {
+      color: #b45309;
+    }
+    html[data-theme="light"] .benchmark-resume-card--gold {
+      border-left: 3px solid #b45309;
+    }
+
+    html[data-theme="light"] .benchmark-resume-card--cyan .bench-res-val,
+    html[data-theme="light"] .benchmark-resume-card--cyan .bench-res-tag {
+      color: #0369a1;
+    }
+    html[data-theme="light"] .benchmark-resume-card--cyan {
+      border-left: 3px solid #0369a1;
+    }
+
+    html[data-theme="light"] .benchmark-resume-card--violet .bench-res-val,
+    html[data-theme="light"] .benchmark-resume-card--violet .bench-res-tag {
+      color: #6d28d9;
+    }
+    html[data-theme="light"] .benchmark-resume-card--violet {
+      border-left: 3px solid #6d28d9;
+    }
+
     html[data-theme="light"] .award-tag {
-      background: rgba(0, 0, 0, 0.06);
-      border-color: rgba(0, 0, 0, 0.18);
-      color: #111114;
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(217, 119, 6, 0.35);
+      color: #b45309;
     }
     html[data-theme="light"] .header-top {
-      border-bottom-color: rgba(0, 0, 0, 0.09);
+      border-bottom-color: rgba(180, 150, 95, 0.2);
     }
     html[data-theme="light"] .section-title {
-      border-bottom-color: rgba(0, 0, 0, 0.09);
-    }
-    html[data-theme="light"] .benchmark-resume-card {
-      border-left-color: #111114;
+      border-bottom-color: rgba(180, 150, 95, 0.2);
     }
     html[data-theme="light"] .resume-item {
-      border-left-color: rgba(0, 0, 0, 0.25);
+      border-left-color: rgba(180, 150, 95, 0.35);
     }
   </style>
 </head>
@@ -620,7 +688,7 @@
         <h2 class="section-title">Academic Distinctions & Competitive Benchmarks</h2>
         <div class="benchmarks-resume-grid">
           <!-- CBSE Class X -->
-          <div class="benchmark-resume-card">
+          <div class="benchmark-resume-card benchmark-resume-card--gold">
             <span class="bench-res-tag">CBSE Secondary Boards</span>
             <div class="bench-res-val">94.6<span class="bench-res-unit">%</span></div>
             <div class="bench-res-title">Class X Board Examination</div>
@@ -631,7 +699,7 @@
           </div>
 
           <!-- CBSE Class XII -->
-          <div class="benchmark-resume-card">
+          <div class="benchmark-resume-card benchmark-resume-card--cyan">
             <span class="bench-res-tag">CBSE Senior Secondary</span>
             <div class="bench-res-val">88.4<span class="bench-res-unit">%</span></div>
             <div class="bench-res-title">Class XII Board Examination</div>
@@ -642,7 +710,7 @@
           </div>
 
           <!-- JEE Main -->
-          <div class="benchmark-resume-card">
+          <div class="benchmark-resume-card benchmark-resume-card--violet">
             <span class="bench-res-tag">National Competitive Exam</span>
             <div class="bench-res-val">94.997<span class="bench-res-unit">%ile</span></div>
             <div class="bench-res-title">JEE Main Examination</div>

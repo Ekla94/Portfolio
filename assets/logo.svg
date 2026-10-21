@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
   <defs>
-    <linearGradient id="esOffWhite" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="50%" stop-color="#f4f4f5" />
-      <stop offset="100%" stop-color="#d4d4d8" />
+    <linearGradient id="esIvoryGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdf9ed" />
+      <stop offset="50%" stop-color="#faebd0" />
+      <stop offset="100%" stop-color="#f59e0b" />
     </linearGradient>
     <linearGradient id="esDark" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#18181b" />
+      <stop offset="0%" stop-color="#1a1814" />
       <stop offset="100%" stop-color="#09090b" />
     </linearGradient>
     <filter id="esGlow" x="-20%" y="-20%" width="140%" height="140%">
@@ -18,17 +18,17 @@
     </filter>
   </defs>
   <!-- Cyber Hexagon Outer Border -->
-  <polygon points="50,5 91,27 91,73 50,95 9,73 9,27" fill="url(#esDark)" stroke="url(#esOffWhite)" stroke-width="2.2"/>
-  <polygon points="50,11 85,30 85,70 50,89 15,70 15,30" stroke="#f4f4f5" stroke-width="0.8" stroke-dasharray="4,3" stroke-opacity="0.45"/>
+  <polygon points="50,5 91,27 91,73 50,95 9,73 9,27" fill="url(#esDark)" stroke="url(#esIvoryGold)" stroke-width="2.2"/>
+  <polygon points="50,11 85,30 85,70 50,89 15,70 15,30" stroke="#fbbf24" stroke-width="0.8" stroke-dasharray="4,3" stroke-opacity="0.45"/>
   
   <!-- Stylized Monogram "E" -->
-  <path d="M26 31 H46 V37 H34 V46 H43 V52 H34 V63 H46 V69 H26 Z" fill="url(#esOffWhite)" filter="url(#esGlow)"/>
+  <path d="M26 31 H46 V37 H34 V46 H43 V52 H34 V63 H46 V69 H26 Z" fill="url(#esIvoryGold)" filter="url(#esGlow)"/>
   
   <!-- Stylized Monogram "S" -->
-  <path d="M53 31 H73 V43 H61 V46 H73 V69 H53 V57 H65 V54 H53 Z" fill="url(#esOffWhite)" filter="url(#esGlow)"/>
+  <path d="M53 31 H73 V43 H61 V46 H73 V69 H53 V57 H65 V54 H53 Z" fill="url(#esIvoryGold)" filter="url(#esGlow)"/>
   
   <!-- Corner Tech Accents -->
-  <circle cx="50" cy="5" r="2.5" fill="#ffffff"/>
-  <circle cx="50" cy="95" r="2.5" fill="#ffffff"/>
-  <line x1="49" y1="31" x2="49" y2="69" stroke="#e4e4e7" stroke-width="1.5" stroke-dasharray="3,3" stroke-opacity="0.35"/>
+  <circle cx="50" cy="5" r="2.5" fill="#fbbf24"/>
+  <circle cx="50" cy="95" r="2.5" fill="#f59e0b"/>
+  <line x1="49" y1="31" x2="49" y2="69" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="3,3" stroke-opacity="0.4"/>
 </svg>
