@@ -698,36 +698,119 @@ const prefersReducedMotion = () =>
   btn.addEventListener('touchend', release);
 })();
 
-/* ─── 11. Contact Form (JS-only success state) ─────────────────── */
+/* ─── 11. Contact Form (JS-only success state & Validation) ──────── */
 (function initForm() {
   const form    = $('#contact-form');
   const success = $('#form-success');
   if (!form || !success) return;
 
+  const submitBtn  = $('.form-submit', form);
+  const nameInput   = $('#form-name', form);
+  const emailInput  = $('#form-email', form);
+  const msgInput    = $('#form-message', form);
+
+  const showError = (msg, inputToFocus) => {
+    success.textContent = msg;
+    success.style.color = '#ef4444';
+    if (inputToFocus) {
+      inputToFocus.focus();
+      inputToFocus.classList.add('input-error');
+      setTimeout(() => inputToFocus.classList.remove('input-error'), 2500);
+    }
+  };
+
+  const clearError = () => {
+    $$('.form-input', form).forEach(i => i.classList.remove('input-error'));
+  };
+
   form.addEventListener('submit', e => {
     e.preventDefault();
-    const name = $('#form-name', form).value.trim();
-    if (!name) { $('#form-name', form).focus(); return; }
-    success.textContent = `Thanks, ${name}! Your message is received. I'll get back to you soon.`;
-    form.reset();
-    setTimeout(() => { success.textContent = ''; }, 6000);
+    clearError();
+
+    const name  = nameInput ? nameInput.value.trim() : '';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const msg   = msgInput ? msgInput.value.trim() : '';
+
+    if (!name) {
+      showError('Please enter your name.', nameInput);
+      return;
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError('Please enter a valid email address.', emailInput);
+      return;
+    }
+
+    if (!msg) {
+      showError('Please enter a brief message.', msgInput);
+      return;
+    }
+
+    // Interactive button loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+      const label = submitBtn.querySelector('.submit-label');
+      if (label) label.textContent = 'Sending...';
+    }
+
+    setTimeout(() => {
+      success.textContent = `✓ Thanks, ${name}! Your message was sent. I'll get back to you soon.`;
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      success.style.color = isLight ? '#047857' : '#10b981';
+      form.reset();
+      clearError();
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        const label = submitBtn.querySelector('.submit-label');
+        if (label) label.textContent = 'Send Message';
+      }
+
+      setTimeout(() => {
+        if (success.textContent.startsWith('✓')) {
+          success.textContent = '';
+        }
+      }, 7000);
+    }, 450);
   });
 })();
 
 /* ─── 12. Instant Smooth Scroll for In-Page Anchor Links ───────── */
 (function initSmoothScroll() {
+  const scrollToTarget = (targetId) => {
+    if (!targetId || targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    // Close mobile menu if open
+    const menu = $('#nav-menu');
+    const burger = $('.nav-hamburger');
+    if (menu && menu.classList.contains('open')) {
+      menu.classList.remove('open');
+      if (burger) burger.setAttribute('aria-expanded', 'false');
+    }
+
+    const nav = $('.nav');
+    const navH = nav ? nav.offsetHeight : 74;
+    const rect = target.getBoundingClientRect();
+    const top = rect.top + window.pageYOffset - navH - 12;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth'
+    });
+  };
+
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
     const targetId = a.getAttribute('href');
-    if (targetId === '#') return;
-    const target = document.querySelector(targetId);
-    if (!target) return;
-
-    e.preventDefault();
-    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h') || '74');
-    const top  = target.getBoundingClientRect().top + window.scrollY - navH;
-    window.scrollTo({ top, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    if (targetId && targetId !== '#') {
+      e.preventDefault();
+      scrollToTarget(targetId);
+    }
   });
 })();
 

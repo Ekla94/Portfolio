@@ -58,6 +58,11 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
     body {
       background: var(--canvas);
       color: var(--text-primary);
@@ -174,7 +179,10 @@
       display: flex; justify-content: space-between; align-items: flex-start;
       border-bottom: 1px solid rgba(255, 255, 255, 0.12);
       padding-bottom: 2rem; margin-bottom: 2.5rem;
-      flex-wrap: wrap; gap: 1.5rem;
+      gap: 1.5rem;
+    }
+    .header-main {
+      flex: 1; min-width: 0;
     }
     .candidate-name {
       font-family: var(--font-display); font-size: 2.6rem; font-weight: 700;
@@ -186,17 +194,24 @@
     .candidate-sub {
       font-size: .92rem; color: var(--text-secondary); margin-top: .25rem;
     }
+    .candidate-loc {
+      font-family: var(--font-mono); font-size: .84rem; color: var(--text-secondary); margin-top: .2rem;
+    }
 
     .contact-details {
-      display: flex; flex-direction: column; gap: .4rem;
-      text-align: right; font-family: var(--font-mono); font-size: .82rem;
+      display: flex; flex-direction: column; gap: .45rem;
+      text-align: right; font-family: var(--font-mono); font-size: .84rem;
+      flex-shrink: 0;
     }
     .contact-item {
       color: var(--text-secondary); text-decoration: none;
-      display: inline-flex; align-items: center; gap: .5rem; justify-content: flex-end;
-      transition: color .2s;
+      display: inline-flex; align-items: center; gap: .55rem; justify-content: flex-end;
+      transition: color .2s ease, transform .2s ease;
     }
-    .contact-item:hover { color: var(--color-gold-bright); }
+    .contact-item:hover {
+      color: var(--color-gold-bright);
+      transform: translateX(-2px);
+    }
 
     /* Sections */
     .resume-section { margin-bottom: 2.75rem; }
@@ -395,19 +410,72 @@
       .nav-actions { gap: 0.35rem; flex-shrink: 0; }
       .theme-toggle-btn { width: 34px; height: 34px; padding: 0; flex-shrink: 0; }
       .print-btn { padding: .32rem .65rem; font-size: .72rem; gap: .3rem; flex-shrink: 0; }
-      .resume-container { padding: 0 .75rem; margin-top: 1.25rem; }
+      .resume-container { padding: 0 .75rem; margin-top: 1.25rem; width: 100%; max-width: 100vw; overflow-x: hidden; }
       .resume-paper {
         padding: 1.5rem 1.15rem;
         border-radius: 14px;
-        background: #111114;
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: var(--canvas-card);
+        border: 1px solid var(--panel-border);
         box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 255, 255, 0.03);
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
       }
-      .candidate-name { font-size: 1.85rem; }
-      .candidate-title { font-size: .98rem; }
-      .header-top { flex-direction: column; gap: 1rem; padding-bottom: 1.25rem; margin-bottom: 1.75rem; }
-      .contact-details { text-align: left; margin-top: .5rem; }
-      .contact-item { justify-content: flex-start; font-size: .78rem; }
+      .header-top {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.65rem;
+        padding-bottom: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+      .header-main {
+        flex: 1;
+        min-width: 0;
+      }
+      .candidate-name {
+        font-size: clamp(1.3rem, 5.2vw, 1.75rem);
+        word-break: break-word;
+      }
+      .candidate-title {
+        font-size: clamp(0.76rem, 2.7vw, 0.92rem);
+        margin-top: 0.25rem;
+      }
+      .candidate-sub {
+        font-size: clamp(0.7rem, 2.4vw, 0.82rem);
+        margin-top: 0.2rem;
+      }
+      .candidate-loc {
+        font-size: clamp(0.68rem, 2.3vw, 0.78rem);
+        margin-top: 0.15rem;
+      }
+      .contact-details {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+        max-width: 48%;
+      }
+      .contact-item {
+        justify-content: flex-end;
+        font-size: clamp(0.66rem, 2.3vw, 0.76rem);
+        gap: 0.3rem;
+        white-space: nowrap;
+      }
+      .contact-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 135px;
+        display: inline-block;
+      }
+      .contact-item svg {
+        width: 13px;
+        height: 13px;
+        flex-shrink: 0;
+      }
       .resume-item {
         border-left: 2px solid rgba(255, 255, 255, 0.25);
         padding-left: .85rem;
@@ -415,15 +483,22 @@
       }
       .item-header { flex-direction: column; align-items: flex-start; gap: .2rem; }
       .item-title { font-size: 1.05rem; }
-      .benchmark-resume-card { padding: 1rem; border-left: 3px solid rgba(250, 244, 225, 0.4); }
+      .benchmarks-resume-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+      }
+      .benchmark-resume-card {
+        padding: 1rem;
+        border-left: 3px solid rgba(250, 244, 225, 0.4);
+      }
       .benchmark-resume-card--gold { border-left-color: var(--color-gold-bright) !important; }
       .benchmark-resume-card--cyan { border-left-color: var(--color-cyan-bright) !important; }
       .benchmark-resume-card--violet { border-left-color: var(--color-violet-bright) !important; }
       .skills-block { grid-template-columns: 1fr; gap: .85rem; }
       .skill-category {
         padding: .9rem 1rem;
-        background: #18181b;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: var(--panel);
+        border: 1px solid var(--panel-border);
         border-radius: 8px;
       }
     }
@@ -582,10 +657,11 @@
 
       <!-- Header -->
       <header class="header-top">
-        <div>
+        <div class="header-main">
           <h1 class="candidate-name">Eklavya Srivastava</h1>
-          <p class="candidate-title">Computer Science & Artificial Intelligence / ML Engineer</p>
+          <p class="candidate-title">Computer Science &amp; Artificial Intelligence / ML Engineer</p>
           <p class="candidate-sub">Vellore Institute of Technology (VIT), Vellore</p>
+          <p class="candidate-loc">Vellore, Tamil Nadu, India</p>
         </div>
         <div class="contact-details">
           <a href="mailto:Eklavya0904@gmail.com" class="contact-item">
@@ -600,7 +676,6 @@
             <span>linkedin.com/in/eklavya-srivastava</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
           </a>
-          <span class="contact-item">Vellore, Tamil Nadu, India</span>
         </div>
       </header>
 
@@ -620,24 +695,23 @@
         <div class="resume-item">
           <div class="item-header">
             <span class="item-title">Vellore Institute of Technology (VIT), Vellore</span>
-            <span class="item-meta">2026 – 2030 · Fresher</span>
+            <span class="item-meta">2026 – 2030</span>
           </div>
-          <p class="item-sub">Bachelor of Technology (B.Tech) in Computer Science & Engineering (Spec. in AI & ML) · Vellore, Tamil Nadu</p>
+          <p class="item-sub">Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering (Spec. in AI &amp; ML) · Vellore, Tamil Nadu</p>
           <ul class="item-bullets">
-            <li>Specialization: Deep Learning, Machine Learning, Data Structures & Algorithms, Full-Stack System Design.</li>
-            <li>Achievements: Team Leader & 1st Place Winner at HackGrid'26 with smart-agriculture platform KhetiNex.</li>
+            <li>Specialization: Deep Learning, Machine Learning, Data Structures &amp; Algorithms, Full-Stack System Design.</li>
+            <li>Achievements: Team Leader &amp; 1st Place Winner at HackGrid'26 with smart-agriculture platform <strong>KhetiNex</strong>.</li>
           </ul>
         </div>
 
-        <!-- Kamal Model School, Mohan Garden -->
+        <!-- Kamal Model Senior Secondary School, Dwarka -->
         <div class="resume-item">
           <div class="item-header">
-            <span class="item-title">Kamal Model School, Mohan Garden, New Delhi</span>
-            <span class="item-meta">CBSE</span>
+            <span class="item-title">Kamal Model Senior Secondary School, Dwarka</span>
           </div>
-          <p class="item-sub">Senior Secondary · Science & Mathematics (PCM)</p>
+          <p class="item-sub">CBSE · Senior Secondary · Science &amp; Mathematics (PCM)</p>
           <ul class="item-bullets">
-            <li>Established CBSE senior secondary institution recognized for strong STEM education, computer laboratories, and academic foundations.</li>
+            <li>Established CBSE senior secondary institution in Dwarka, New Delhi, recognized for strong STEM education, computer laboratories, and academic foundations.</li>
             <li>Completed Class 12th Senior Secondary curriculum with focus on physics, chemistry, mathematics, and computer sciences.</li>
           </ul>
         </div>
@@ -646,9 +720,8 @@
         <div class="resume-item">
           <div class="item-header">
             <span class="item-title">Father Agnel School, Vaishali, Ghaziabad</span>
-            <span class="item-meta">CBSE</span>
           </div>
-          <p class="item-sub">Secondary School Education</p>
+          <p class="item-sub">CBSE · Secondary School Education</p>
           <ul class="item-bullets">
             <li>Renowned Agnelite institution in Ghaziabad recognized for rigorous STEM education, high-order science and mathematics foundations, and values-driven pedagogy.</li>
             <li>Completed Class 10th CBSE secondary education with scholastic distinction in science and analytical disciplines.</li>
@@ -659,9 +732,8 @@
         <div class="resume-item">
           <div class="item-header">
             <span class="item-title">JKG International School, Indirapuram, Ghaziabad</span>
-            <span class="item-meta">CBSE</span>
           </div>
-          <p class="item-sub">Formative Schooling</p>
+          <p class="item-sub">CBSE · Primary Schooling</p>
           <ul class="item-bullets">
             <li>Prominent institution opposite Swarn Jayanti Park, Indirapuram, that formed an integral part of the early academic journey, cultivating disciplined study habits and curiosity in science.</li>
           </ul>
@@ -671,9 +743,8 @@
         <div class="resume-item">
           <div class="item-header">
             <span class="item-title">N.K. Bagrodia Public School, Dwarka, New Delhi</span>
-            <span class="item-meta">CBSE</span>
           </div>
-          <p class="item-sub">Primary & Middle School Foundations</p>
+          <p class="item-sub">CBSE · Primary &amp; Middle School Foundations</p>
           <ul class="item-bullets">
             <li>Premier educational institution in Sector 4, Dwarka, known for cultivating scientific temperament, innovation labs, and holistic intellectual curiosity.</li>
           </ul>
@@ -682,7 +753,7 @@
 
       <!-- Academic Distinctions & Competitive Benchmarks -->
       <section class="resume-section">
-        <h2 class="section-title">Academic Distinctions & Competitive Benchmarks</h2>
+        <h2 class="section-title">Academic Distinctions &amp; Competitive Benchmarks</h2>
         <div class="benchmarks-resume-grid">
           <!-- CBSE Class X -->
           <div class="benchmark-resume-card benchmark-resume-card--gold">
@@ -697,18 +768,18 @@
 
           <!-- CBSE Class XII -->
           <div class="benchmark-resume-card benchmark-resume-card--cyan">
-            <span class="bench-res-tag">CBSE Senior Secondary</span>
+            <span class="bench-res-tag">CBSE Senior Secondary Boards</span>
             <div class="bench-res-val">88.4<span class="bench-res-unit">%</span></div>
             <div class="bench-res-title">Class XII Board Examination</div>
-            <div class="bench-res-sub">Kamal Model School, Mohan Garden</div>
+            <div class="bench-res-sub">Kamal Model Senior Secondary School, Dwarka</div>
             <p class="bench-res-desc">
-              Graduated Senior Secondary in Science & Mathematics stream (PCM) with foundational STEM focus.
+              Graduated Senior Secondary in Science &amp; Mathematics stream (PCM) with foundational STEM focus.
             </p>
           </div>
 
           <!-- JEE Main -->
           <div class="benchmark-resume-card benchmark-resume-card--violet">
-            <span class="bench-res-tag">National Competitive Exam</span>
+            <span class="bench-res-tag">NTA (National Testing Agency)</span>
             <div class="bench-res-val">94.997<span class="bench-res-unit">%ile</span></div>
             <div class="bench-res-title">JEE Main Examination</div>
             <div class="bench-res-sub">Engineering Entrance Examination</div>
@@ -751,7 +822,7 @@
         
         <div class="resume-item">
           <div class="item-header">
-            <span class="item-title">KhetiNex — Intelligent Agricultural Ecosystem</span>
+            <span class="item-title"><strong>KhetiNex</strong> — Intelligent Agricultural Ecosystem</span>
             <span class="item-meta">React · Node.js · Python ML · MongoDB</span>
           </div>
           <p class="item-sub">Team Leader & Full-Stack Architect · <a href="https://fantasticfive-hg-26.vercel.app/" target="_blank" rel="noopener" style="color: inherit; text-decoration: underline;">fantasticfive-hg-26.vercel.app</a></p>
