@@ -165,23 +165,23 @@ const prefersReducedMotion = () =>
     radius: 170
   };
 
-  // Node Color Schemes (Warm Ivory Off-White & Harmonic Colors)
+  // Node Color Schemes (Warm Ivory Off-White & Harmonic Colors - High Contrast & Vibrancy)
   const PALETTES_DARK = [
-    { r: 250, g: 244, b: 225 }, // Warm Ivory Off-White (Soft Yellow Undertone)
-    { r: 245, g: 158, b: 11  }, // Solar Amber / Gold
-    { r: 16,  g: 185, b: 129 }, // Emerald Jade
+    { r: 255, g: 250, b: 235 }, // Luminous Warm Ivory
+    { r: 251, g: 191, b: 36  }, // Bright Solar Amber / Gold
+    { r: 52,  g: 211, b: 153 }, // Radiant Emerald Jade
     { r: 56,  g: 189, b: 248 }, // Electric Sky Cyan
-    { r: 168, g: 85,  b: 247 }, // Cosmic Violet
-    { r: 251, g: 191, b: 36  }  // Champagne Gold
+    { r: 192, g: 132, b: 252 }, // Luminous Cosmic Violet
+    { r: 254, g: 215, b: 170 }  // Warm Champagne Cream
   ];
 
   const PALETTES_LIGHT = [
-    { r: 38,  g: 34,  b: 30  }, // Deep Warm Espresso
-    { r: 217, g: 119, b: 6   }, // Burnished Gold / Amber
-    { r: 5,   g: 150, b: 105 }, // Deep Emerald
-    { r: 2,   g: 132, b: 199 }, // Azure Cyan
-    { r: 124, g: 58,  b: 237 }, // Deep Violet
-    { r: 120, g: 113, b: 108 }  // Warm Stone Umber
+    { r: 28,  g: 25,  b: 23  }, // Deep Warm Espresso
+    { r: 180, g: 83,  b: 9   }, // Burnished Gold / Amber
+    { r: 4,   g: 120, b: 87  }, // Forest Emerald
+    { r: 3,   g: 105, b: 161 }, // Deep Azure Cyan
+    { r: 109, g: 40,  b: 217 }, // Deep Royal Violet
+    { r: 120, g: 53,  b: 15  }  // Dark Rust Umber
   ];
 
   class Node {
@@ -193,11 +193,11 @@ const prefersReducedMotion = () =>
       this.x = Math.random() * w;
       this.baseY = isInit ? Math.random() * h : (Math.random() < 0.5 ? -15 : h + 15);
 
-      // 3D Depth / Z-layer: 0.25 (distant, subtle, slow) to 1.15 (foreground, bright, fast)
-      this.z = 0.25 + Math.random() * 0.9;
+      // 3D Depth / Z-layer: 0.35 (subtle, slow) to 1.25 (foreground, bold, fast)
+      this.z = 0.35 + Math.random() * 0.9;
 
-      // Radius scaled by depth
-      this.r = (0.85 + Math.random() * 1.5) * this.z;
+      // Radius scaled by depth - boosted for bolder visibility
+      this.r = (1.3 + Math.random() * 2.0) * this.z;
 
       // Natural Brownian velocity
       const speed = (0.2 + Math.random() * 0.35) * (0.8 + this.z * 0.4);
@@ -271,7 +271,7 @@ const prefersReducedMotion = () =>
 
     draw(ctx) {
       const pulse = 0.82 + 0.18 * Math.sin(this.pulsePhase);
-      const alpha = (0.35 + 0.55 * (this.z / 1.15)) * pulse;
+      const alpha = (0.55 + 0.45 * (this.z / 1.25)) * pulse;
       const c = this.getColor();
 
       // Core glowing node
@@ -280,11 +280,11 @@ const prefersReducedMotion = () =>
       ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha})`;
       ctx.fill();
 
-      // Atmospheric halo on prominent foreground nodes
-      if (this.z > 0.72) {
+      // Atmospheric halo on prominent foreground nodes - bolder, wider aura
+      if (this.z > 0.60) {
         ctx.beginPath();
-        ctx.arc(this.renderX, this.renderY, this.r * 2.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.16})`;
+        ctx.arc(this.renderX, this.renderY, this.r * 3.2, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${c.r}, ${c.g}, ${c.b}, ${alpha * 0.32})`;
         ctx.fill();
       }
     }
@@ -299,8 +299,8 @@ const prefersReducedMotion = () =>
     canvas.height = Math.floor(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    // Dynamic node count scaled to viewport size (balanced for 60fps)
-    const targetCount = Math.min(170, Math.max(65, Math.floor((W * H) / 9500)));
+    // Dynamic node count scaled to viewport size (balanced for 60fps & bold density)
+    const targetCount = Math.min(185, Math.max(75, Math.floor((W * H) / 8800)));
 
     if (nodes.length !== targetCount) {
       nodes = Array.from({ length: targetCount }, () => new Node(W, H, true));
@@ -349,11 +349,11 @@ const prefersReducedMotion = () =>
       nodes[i].update(W, H, currentScrollY);
     }
 
-    // 2. Draw Neural Network connections
-    const maxDist = Math.min(135, Math.max(90, W * 0.088));
+    // 2. Draw Neural Network connections - Bolder line width & punchy contrast
+    const maxDist = Math.min(150, Math.max(100, W * 0.096));
     const maxDistSq = maxDist * maxDist;
 
-    ctx.lineWidth = 0.85;
+    ctx.lineWidth = 1.35;
 
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -368,9 +368,9 @@ const prefersReducedMotion = () =>
           const dist = Math.sqrt(distSq);
           const proximity = 1 - dist / maxDist;
           const depthFactor = (a.z + b.z) * 0.5;
-          const alpha = proximity * 0.35 * depthFactor;
+          const alpha = proximity * 0.65 * depthFactor;
 
-          if (alpha > 0.015) {
+          if (alpha > 0.02) {
             const cb = b.getColor();
             ctx.beginPath();
             ctx.moveTo(a.renderX, a.renderY);
@@ -386,20 +386,22 @@ const prefersReducedMotion = () =>
         }
       }
 
-      // Synapse connection to user mouse cursor
+      // Synapse connection to user mouse cursor - high luminosity & responsive
       if (mouse.active) {
         const mdx = a.renderX - mouse.x;
         const mdy = a.renderY - mouse.y;
         const mDistSq = mdx * mdx + mdy * mdy;
-        const mMax = mouse.radius * 0.95;
+        const mMax = mouse.radius * 1.05;
         if (mDistSq < mMax * mMax) {
           const mDist = Math.sqrt(mDistSq);
-          const mAlpha = (1 - mDist / mMax) * 0.45 * a.z;
+          const mAlpha = (1 - mDist / mMax) * 0.85 * a.z;
           ctx.beginPath();
           ctx.moveTo(a.renderX, a.renderY);
           ctx.lineTo(mouse.x, mouse.y);
+          ctx.lineWidth = 1.8;
           ctx.strokeStyle = `rgba(${ca.r}, ${ca.g}, ${ca.b}, ${mAlpha})`;
           ctx.stroke();
+          ctx.lineWidth = 1.35;
         }
       }
     }
